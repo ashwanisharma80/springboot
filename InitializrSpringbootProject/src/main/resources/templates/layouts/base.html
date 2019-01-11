@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"	
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Base Layout</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Decorator Sample</span>
+        </nav>
+
+        <div class="container">
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <th:block layout:fragment="breadcrumb">
+                    </th:block>
+                </ol>
+            </nav>
+            <div class="content">
+                <div>Templates</div>
+                <div class="test" layout:fragment="page_content"></div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        </script>
+        <th:block layout:fragment="scripts">
+        </th:block>
+    </body>
+
+</html>
