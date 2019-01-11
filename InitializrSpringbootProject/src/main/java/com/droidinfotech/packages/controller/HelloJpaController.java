@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author ACER
  */
-@RestController
+//@RestController
 @RequestMapping("/hello/")
-public class HelloController {
+public class HelloJpaController {
 
     @RequestMapping("/")
     public String hellotest() {
@@ -25,7 +25,7 @@ public class HelloController {
     @RequestMapping("/add")
     public String welcome(Model model) {
         model.addAttribute("greeting", new Greeting());
-        return "user/welcome";
+        return "welcome";
     }
 
     

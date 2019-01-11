@@ -89,4 +89,9 @@ public class UserJpaController {
         return "redirect:/Users/list";
 
     }
+
+    @GetMapping("/login")
+    public String loginAction() {
+        return "registration/login";
+    }
 }
