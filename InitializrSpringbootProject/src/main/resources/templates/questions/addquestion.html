@@ -1,0 +1,8 @@
+<header class="page-footer" th:replace="fragments/header"></header>    
+<h1>Add/Update Question</h1>
+<form action="#" th:action="@{/Questions/add}" th:object="${question}" method="post">
+    <input type="hidden" name="editId" th:field="*{id}" />
+    <p>Question: <textarea rows="2" cols="30" required></textarea></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<footer class="page-footer" th:replace="fragments/footer"></footer>

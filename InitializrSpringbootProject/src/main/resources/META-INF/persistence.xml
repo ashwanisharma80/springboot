@@ -18,6 +18,9 @@
     <class>com.droidinfotech.packages.model.Log</class>
     <class>com.droidinfotech.packages.model.Events</class>
     <class>com.droidinfotech.packages.model.User</class>
+    <class>com.droidinfotech.packages.model.Role</class>
+    <class>com.droidinfotech.packages.model.Registration</class>
+    <class>com.droidinfotech.packages.model.NotificationMessage</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.user" value="app"/>

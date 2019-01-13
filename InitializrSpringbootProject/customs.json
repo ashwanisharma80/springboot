@@ -3,6 +3,12 @@
         "title": {}
     },
     "attributes": {
-        "th:replace": {}
+        "th:action": {
+            "context": "form"
+        },
+        "th:replace": {},
+        "th:field": {
+            "context": "input"
+        }
     }
 }
