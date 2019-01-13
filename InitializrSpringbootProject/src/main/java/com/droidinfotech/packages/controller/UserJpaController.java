@@ -48,7 +48,7 @@ public class UserJpaController {
         n.setCreatedOn("2018-10-30");
         userRepository.save(n);*/
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         user.setCreatedOn(ft.format(date));
         userRepository.save(user);
         model.addAttribute("user", user);

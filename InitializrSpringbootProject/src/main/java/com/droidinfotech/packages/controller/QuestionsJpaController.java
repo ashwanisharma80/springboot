@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.droidinfotech.packages.model.Questions;
@@ -27,6 +26,7 @@ public class QuestionsJpaController {
 
     @GetMapping(path = "/add")
     public String addAction(Model model) {
+       
         model.addAttribute("question", new Questions());
         model.addAttribute("title", "Add Question");
         model.addAttribute("addStatus", true);
@@ -46,8 +46,9 @@ public class QuestionsJpaController {
         n.setCreatedOn("2018-10-30");
         userRepository.save(n);*/
         Date date = new Date();
-      //  SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
-        questions.setCreatedOn(date);
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(ft.format(date));
+        questions.setCreatedOn(ft.format(date));
         QuestionsRepository.save(questions);
         model.addAttribute("questions", questions);
         return "redirect:/Questions/list";

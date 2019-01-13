@@ -21,6 +21,7 @@
     <class>com.droidinfotech.packages.model.Role</class>
     <class>com.droidinfotech.packages.model.Registration</class>
     <class>com.droidinfotech.packages.model.NotificationMessage</class>
+    <class>com.droidinfotech.packages.model.NewEntity</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
