@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.droidinfotech.packages.model.User;
 import com.droidinfotech.packages.model.UserRepository;
 import java.text.SimpleDateFormat;
-import static java.time.Clock.system;
 import java.util.Date;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +30,7 @@ public class UserJpaController {
         model.addAttribute("user", new User());
         model.addAttribute("title", "Add User");
         model.addAttribute("addStatus", true);
-        return "adduser";
+        return "user/adduser";
     }
 
     @PostMapping(path = "/add") // Map ONLY GET Requests
@@ -78,9 +76,11 @@ public class UserJpaController {
 
     @RequestMapping(value = "/{id}/edit", method = GET)
     public String editAction(Model model, @PathVariable("id") int id) {
+        model.addAttribute("title", "Edit User");
+        model.addAttribute("addStatus", true);
         model.addAttribute("user", userRepository.findById(id));
         model.addAttribute("editId", id);
-        return "addUser";
+        return "user/adduser";
     }
 
     @RequestMapping(value = "/{id}/delete", method = GET)

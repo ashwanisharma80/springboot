@@ -1,0 +1,11 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:text": {},
+        "th:action": {},
+        "th:replace": {},
+        "th:field": {
+            "context": "input"
+        }
+    }
+}

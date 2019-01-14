@@ -32,7 +32,11 @@
             <artifactId>bootstrap</artifactId>
             <version>3.3.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>                                 
+        </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap-datepicker</artifactId>
