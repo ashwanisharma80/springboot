@@ -2,9 +2,9 @@
 <h1 th:text="${title}">1</h1>
 <form action="#" th:action="@{/Users/add}" th:object="${user}" method="post">
     <input type="hidden" name="editId" th:field="*{id}" />
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Email: <input type="text" th:field="*{email}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
+    <p>Name: <input type="text" th:field="*{name}"  required/></p>
+    <p>Email: <input type="text" th:field="*{email}" required /></p>
+    <p>Password: <input type="password" th:field="*{password}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 <footer class="page-footer" th:replace="fragments/footer"></footer>
