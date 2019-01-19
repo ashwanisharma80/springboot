@@ -22,7 +22,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller    // This means that this class is a Controller
-@RequestMapping(path = "/Users") // This means URL's start with /demo (after Application path)
+@RequestMapping(path = "/") // This means URL's start with /demo (after Application path)
 public class UserJpaController {
 
     @Autowired // This means to get the bean called userRepository
@@ -90,7 +90,7 @@ public class UserJpaController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public ModelAndView getAll() {
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
