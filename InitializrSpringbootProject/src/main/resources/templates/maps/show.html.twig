@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Maps</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ map.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ map.title }}</td>
+            </tr>
+            <tr>
+                <th>Pdfimage</th>
+                <td>{{ map.pdfimage }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if map.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if map.createdOn %}{{ map.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('maps_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('maps_edit', { 'id': map.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

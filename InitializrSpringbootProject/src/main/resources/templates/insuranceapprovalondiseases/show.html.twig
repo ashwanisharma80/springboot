@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Insuranceapprovalondisease</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ insuranceApprovalOnDisease.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ insuranceApprovalOnDisease.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Roomno</th>
+                <td>{{ insuranceApprovalOnDisease.roomNo }}</td>
+            </tr>
+            <tr>
+                <th>Diseasedetails</th>
+                <td>{{ insuranceApprovalOnDisease.diseaseDetails }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ insuranceApprovalOnDisease.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Policyname</th>
+                <td>{{ insuranceApprovalOnDisease.policyName }}</td>
+            </tr>
+            <tr>
+                <th>Policyno</th>
+                <td>{{ insuranceApprovalOnDisease.policyNo }}</td>
+            </tr>
+            <tr>
+                <th>Policyholder</th>
+                <td>{{ insuranceApprovalOnDisease.policyHolder }}</td>
+            </tr>
+            <tr>
+                <th>Insuranceid</th>
+                <td>{{ insuranceApprovalOnDisease.insuranceId }}</td>
+            </tr>
+            <tr>
+                <th>Approvalchargebreakup</th>
+                <td>{{ insuranceApprovalOnDisease.approvalChargeBreakup }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ insuranceApprovalOnDisease.total }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if insuranceApprovalOnDisease.createdOn %}{{ insuranceApprovalOnDisease.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if insuranceApprovalOnDisease.modifiedOn %}{{ insuranceApprovalOnDisease.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if insuranceApprovalOnDisease.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('insuranceapprovalondiseases_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('insuranceapprovalondiseases_edit', { 'id': insuranceApprovalOnDisease.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Settings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Favicon</th>
+                <th>Logo</th>
+                <th>Language</th>
+                <th>Timezone</th>
+                <th>Footertext</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for setting in settings %}
+            <tr>
+                <td><a href="{{ path('settings_show', { 'id': setting.id }) }}">{{ setting.id }}</a></td>
+                <td>{{ setting.title }}</td>
+                <td>{{ setting.address }}</td>
+                <td>{{ setting.email }}</td>
+                <td>{{ setting.mobile }}</td>
+                <td>{{ setting.favicon }}</td>
+                <td>{{ setting.logo }}</td>
+                <td>{{ setting.language }}</td>
+                <td>{{ setting.timezone }}</td>
+                <td>{{ setting.footertext }}</td>
+                <td>{% if setting.createdOn %}{{ setting.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if setting.modifiedOn %}{{ setting.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if setting.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('settings_show', { 'id': setting.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('settings_edit', { 'id': setting.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settings_new') }}">Create a new setting</a>
+        </li>
+    </ul>
+{% endblock %}

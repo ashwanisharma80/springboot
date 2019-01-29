@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Patientadmissionlists list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Doctorid</th>
+                <th>Admissiondate</th>
+                <th>Dischargedate</th>
+                <th>Packageid</th>
+                <th>Insuranceid</th>
+                <th>Policyno</th>
+                <th>Agentname</th>
+                <th>Guardianname</th>
+                <th>Guardianrelation</th>
+                <th>Guardiancontact</th>
+                <th>Guardianaddress</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for patientAdmissionList in patientAdmissionLists %}
+            <tr>
+                <td><a href="{{ path('patientadmissionlist_show', { 'id': patientAdmissionList.id }) }}">{{ patientAdmissionList.id }}</a></td>
+                <td>{{ patientAdmissionList.patientId }}</td>
+                <td>{{ patientAdmissionList.doctorId }}</td>
+                <td>{% if patientAdmissionList.admissionDate %}{{ patientAdmissionList.admissionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if patientAdmissionList.dischargeDate %}{{ patientAdmissionList.dischargeDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ patientAdmissionList.packageId }}</td>
+                <td>{{ patientAdmissionList.insuranceId }}</td>
+                <td>{{ patientAdmissionList.policyNo }}</td>
+                <td>{{ patientAdmissionList.agentName }}</td>
+                <td>{{ patientAdmissionList.guardianName }}</td>
+                <td>{{ patientAdmissionList.guardianRelation }}</td>
+                <td>{{ patientAdmissionList.guardianContact }}</td>
+                <td>{{ patientAdmissionList.guardianAddress }}</td>
+                <td>{{ patientAdmissionList.userId }}</td>
+                <td>{% if patientAdmissionList.createdOn %}{{ patientAdmissionList.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if patientAdmissionList.modifiedOn %}{{ patientAdmissionList.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if patientAdmissionList.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('patientadmissionlist_show', { 'id': patientAdmissionList.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('patientadmissionlist_edit', { 'id': patientAdmissionList.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('patientadmissionlist_new') }}">Create a new patientAdmissionList</a>
+        </li>
+    </ul>
+{% endblock %}

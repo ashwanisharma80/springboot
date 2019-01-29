@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bedassignmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Bedtypeid</th>
+                <th>Assigndate</th>
+                <th>Dischargedate</th>
+                <th>Descriptions</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bedAssignManager in bedAssignManagers %}
+            <tr>
+                <td><a href="{{ path('bedassignmanager_show', { 'id': bedAssignManager.id }) }}">{{ bedAssignManager.id }}</a></td>
+                <td>{{ bedAssignManager.patientId }}</td>
+                <td>{{ bedAssignManager.bedTypeId }}</td>
+                <td>{% if bedAssignManager.assignDate %}{{ bedAssignManager.assignDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bedAssignManager.dischargeDate %}{{ bedAssignManager.dischargeDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ bedAssignManager.descriptions }}</td>
+                <td>{{ bedAssignManager.userId }}</td>
+                <td>{% if bedAssignManager.createdOn %}{{ bedAssignManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bedAssignManager.modifiedOn %}{{ bedAssignManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bedAssignManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bedassignmanager_show', { 'id': bedAssignManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bedassignmanager_edit', { 'id': bedAssignManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bedassignmanager_new') }}">Create a new bedAssignManager</a>
+        </li>
+    </ul>
+{% endblock %}

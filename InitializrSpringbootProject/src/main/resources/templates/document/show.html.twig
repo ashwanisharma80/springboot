@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Document</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ document.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ document.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Attachfile</th>
+                <td><a href="{{ path('download_file',{'link':document.attachfile|replace({"web/":""})}) }}" />Click here</a></td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ document.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ document.descriptions | striptags }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if document.createdOn %}{{ document.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            
+            <tr>
+                <th>Active</th>
+                <td>{% if document.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('document_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('document_edit', { 'id': document.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Deathreportmanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ deathReportManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ deathReportManager.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Deathdate</th>
+                <td>{% if deathReportManager.deathDate %}{{ deathReportManager.deathDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ deathReportManager.title }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ deathReportManager.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ deathReportManager.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ deathReportManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if deathReportManager.createdOn %}{{ deathReportManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if deathReportManager.modifiedOn %}{{ deathReportManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if deathReportManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('deathreportmanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('deathreportmanager_edit', { 'id': deathReportManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

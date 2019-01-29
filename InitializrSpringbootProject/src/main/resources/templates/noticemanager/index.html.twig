@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Noticemanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Descriptions</th>
+                <th>Startdate</th>
+                <th>Enddate</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for noticeManager in noticeManagers %}
+            <tr>
+                <td><a href="{{ path('noticemanager_show', { 'id': noticeManager.id }) }}">{{ noticeManager.id }}</a></td>
+                <td>{{ noticeManager.title }}</td>
+                <td>{{ noticeManager.descriptions }}</td>
+                <td>{% if noticeManager.startDate %}{{ noticeManager.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if noticeManager.endDate %}{{ noticeManager.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ noticeManager.userId }}</td>
+                <td>{% if noticeManager.createdOn %}{{ noticeManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if noticeManager.modifiedOn %}{{ noticeManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if noticeManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('noticemanager_show', { 'id': noticeManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('noticemanager_edit', { 'id': noticeManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('noticemanager_new') }}">Create a new noticeManager</a>
+        </li>
+    </ul>
+{% endblock %}

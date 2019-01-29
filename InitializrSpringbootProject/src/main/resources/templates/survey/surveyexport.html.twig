@@ -1,0 +1,12 @@
+{{surveyTitle}}
+{{eventTitle}}
+Total number of users attempted the survey = {{totalNumberOfUsers}}
+{% for questionData in questionsData %}
+   {% set responseString = "" %}
+   {{ "\n"~"Question: "~questionData.question }}
+   {%for key,response in questionData.responses%}
+      {% set optionString = response.optionText ~ "("~ response.optionCount~")"  %}
+      {% set responseString = responseString~","~optionString%}
+   {% endfor %}
+   {{responseString|trim(',')}}   
+{% endfor %}

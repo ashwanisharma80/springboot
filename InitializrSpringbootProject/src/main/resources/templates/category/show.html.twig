@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+			        <div style="text-align: center">
+
+    <h1>Category</h1>
+
+      <table class="table table-responsive table-bordered table-hover">
+	  	  <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Createdon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{% if category.active %}Yes{% else %}No{% endif %}</td>         
+                <td>{% if category.createdOn %}{{ category.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+	</div><br>
+
+    <ul>
+	 <li class="link">
+            <a href="{{ path('category_edit', { 'id': category.id }) }}">Edit</a>
+        </li>
+		
+        <li>
+            <a href="{{ path('category_index') }}">Back to the list</a>
+        </li>
+       
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

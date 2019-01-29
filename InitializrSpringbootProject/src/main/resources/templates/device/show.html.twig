@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Device</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ device.id }}</td>
+            </tr>
+            <tr>
+                <th>Deviceid</th>
+                <td>{{ device.deviceId }}</td>
+            </tr>
+            <tr>
+                <th>Devicetoken</th>
+                <td>{{ device.devicetoken }}</td>
+            </tr>
+            <tr>
+                <th>Imei</th>
+                <td>{{ device.imei }}</td>
+            </tr>
+            <tr>
+                <th>Devicetype</th>
+                <td>{{ device.devicetype }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if device.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if device.createdOn %}{{ device.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('device_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('device_edit', { 'id': device.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

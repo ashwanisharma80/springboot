@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="table-responsive">
+        <div style="text-align: center">
+    <h1>Events List</h1>
+
+  <table class="table table-bordered table-hover">
+        <thead>
+
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>Sr.</th>
+                <th{% if pagination.isSorted('a.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.title') }}</th>
+                <th{% if pagination.isSorted('a.location') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Location', 'a.location') }}</th>
+                <th>Logo</th>
+                <th{% if pagination.isSorted('a.createdOn') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created On', 'a.createdOn') }}</th>
+                 <th>Actions</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+         {% set cntr=0 %}
+        {% for event in pagination %} 
+            {% set cntr=cntr+1 %}
+            <tr>
+                <td>{{cntr}}</td>
+                <td>{{ event.title }}</td>
+                <td>{{ event.location }}</td>
+                <td> {% if event.logo is defined %} <img src="{{asset(event.logo|replace({"web/":""}))}}" width="100" height="100" />{% endif %}</td>
+                <td>{% if event.createdOn %}{{ event.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('events_edit', { 'id': event.id }) }}">Edit</a> |
+                        
+                                               
+                            <a onclick="javascript:if(!confirm('Do you want to remove this record ?')) return false;" href="{{ path('events_delete', { 'id': event.id }) }}">Remove</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+          
+        {% endfor %}
+       
+        </tbody>
+    </table></div></div>
+  <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    
+    <ul>
+        <li>
+            <a href=" {% if cntr<2 %} {{ path('events_new') }}{% else%} javascript:void(0); {% endif %}" {% if cntr>=2 %} onclick="javascript:alert('only two events can be added');" {% endif %} style="text-decoration: underline;">Create a new event</a>
+        </li>
+    </ul>
+        
+{% endblock %}

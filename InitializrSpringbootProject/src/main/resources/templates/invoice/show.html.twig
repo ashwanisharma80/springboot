@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Invoice</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ invoice.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ invoice.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Accountid</th>
+                <td>{{ invoice.accountId }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ invoice.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ invoice.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ invoice.price }}</td>
+            </tr>
+            <tr>
+                <th>Vat</th>
+                <td>{{ invoice.vat }}</td>
+            </tr>
+            <tr>
+                <th>Gst</th>
+                <td>{{ invoice.gst }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ invoice.discount }}</td>
+            </tr>
+            <tr>
+                <th>Paidamount</th>
+                <td>{{ invoice.paidAmount }}</td>
+            </tr>
+            <tr>
+                <th>Dueamount</th>
+                <td>{{ invoice.dueAmount }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ invoice.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if invoice.createdOn %}{{ invoice.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{{ invoice.modifiedOn }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if invoice.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('invoice_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Packagemanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Descriptions</th>
+                <th>Packageincluding</th>
+                <th>Discount</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for packageManager in packageManagers %}
+            <tr>
+                <td><a href="{{ path('packagemanager_show', { 'id': packageManager.id }) }}">{{ packageManager.id }}</a></td>
+                <td>{{ packageManager.name }}</td>
+                <td>{{ packageManager.descriptions }}</td>
+                <td>{{ packageManager.packageIncluding }}</td>
+                <td>{{ packageManager.discount }}</td>
+                <td>{{ packageManager.userId }}</td>
+                <td>{% if packageManager.createdOn %}{{ packageManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if packageManager.modifiedOn %}{{ packageManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if packageManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('packagemanager_show', { 'id': packageManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('packagemanager_edit', { 'id': packageManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('packagemanager_new') }}">Create a new packageManager</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Advancepaymentmanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ advancePaymentManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Aid</th>
+                <td>{{ advancePaymentManager.aid }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ advancePaymentManager.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ advancePaymentManager.amount }}</td>
+            </tr>
+            <tr>
+                <th>Paymentmethod</th>
+                <td>{{ advancePaymentManager.paymentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Cashcardcheque</th>
+                <td>{{ advancePaymentManager.cashCardCheque }}</td>
+            </tr>
+            <tr>
+                <th>Receiptno</th>
+                <td>{{ advancePaymentManager.receiptNo }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ advancePaymentManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if advancePaymentManager.createdOn %}{{ advancePaymentManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if advancePaymentManager.modifiedOn %}{{ advancePaymentManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if advancePaymentManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('advancepaymentmanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('advancepaymentmanager_edit', { 'id': advancePaymentManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

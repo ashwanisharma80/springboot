@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prescriptions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Foodalergies</th>
+                <th>Tendencybleed</th>
+                <th>Heartdisease</th>
+                <th>Highbloodpressure</th>
+                <th>Diabetic</th>
+                <th>Surgery</th>
+                <th>Accident</th>
+                <th>Others</th>
+                <th>Familymedicalhistory</th>
+                <th>Currentmedication</th>
+                <th>Femalepregnancy</th>
+                <th>Breastfeeding</th>
+                <th>Healthinsurance</th>
+                <th>Lowincome</th>
+                <th>Reference</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prescription in prescriptions %}
+            <tr>
+                <td><a href="{{ path('prescription_show', { 'id': prescription.id }) }}">{{ prescription.id }}</a></td>
+                <td>{{ prescription.patientId }}</td>
+                <td>{{ prescription.foodalergies }}</td>
+                <td>{{ prescription.tendencyBleed }}</td>
+                <td>{{ prescription.heartdisease }}</td>
+                <td>{{ prescription.highbloodpressure }}</td>
+                <td>{{ prescription.diabetic }}</td>
+                <td>{{ prescription.surgery }}</td>
+                <td>{{ prescription.accident }}</td>
+                <td>{{ prescription.others }}</td>
+                <td>{{ prescription.familyMedicalHistory }}</td>
+                <td>{{ prescription.currentMedication }}</td>
+                <td>{{ prescription.femalePregnancy }}</td>
+                <td>{{ prescription.breastFeeding }}</td>
+                <td>{{ prescription.healthInsurance }}</td>
+                <td>{{ prescription.lowincome }}</td>
+                <td>{{ prescription.reference }}</td>
+                <td>{% if prescription.createdOn %}{{ prescription.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if prescription.modifiedOn %}{{ prescription.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if prescription.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('prescription_show', { 'id': prescription.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('prescription_edit', { 'id': prescription.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prescription_new') }}">Create a new prescription</a>
+        </li>
+    </ul>
+{% endblock %}

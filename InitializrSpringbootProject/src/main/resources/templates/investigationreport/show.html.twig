@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Investigationreport</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ investigationReport.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ investigationReport.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ investigationReport.title }}</td>
+            </tr>
+            <tr>
+                <th>Investigationdate</th>
+                <td>{% if investigationReport.investigationDate %}{{ investigationReport.investigationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ investigationReport.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ investigationReport.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ investigationReport.picture }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ investigationReport.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if investigationReport.createdOn %}{{ investigationReport.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if investigationReport.modifiedOn %}{{ investigationReport.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if investigationReport.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('investigationreport_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('investigationreport_edit', { 'id': investigationReport.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

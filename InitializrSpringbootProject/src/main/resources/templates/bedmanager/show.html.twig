@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bedmanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bedManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Bedtype</th>
+                <td>{{ bedManager.bedType }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ bedManager.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Bedcapacity</th>
+                <td>{{ bedManager.bedCapacity }}</td>
+            </tr>
+            <tr>
+                <th>Charge</th>
+                <td>{{ bedManager.charge }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ bedManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if bedManager.createdOn %}{{ bedManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if bedManager.modifiedOn %}{{ bedManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if bedManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bedmanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('bedmanager_edit', { 'id': bedManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

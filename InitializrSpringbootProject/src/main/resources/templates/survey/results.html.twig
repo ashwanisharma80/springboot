@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <link href="{{asset('assets/css/survey.css')}}" rel="stylesheet">
+   <h1 style="margin-right:100px;">Surveys Results</h1>
+
+   <form name="" method="post" action="/web/survey/results/export.xlsx">
+      <div><label for="user_name">Select survey to export </label>
+         <select name="survey" id="surveryId" class="form-control" required>
+            <option value="">Select Survey</option>
+            {% for survey in allSurveys %}
+               <option value="{{survey.id}}">{{survey.title}}</option> 
+            {% endfor %}
+         </select>
+         <input type="submit" value="Export to Excel" id="export" name="export"/>
+      </div>
+
+   </form>  
+
+   <form name="" method="post" action="">
+      <div><label for="user_name">Select a user</label>
+         <select name="user_name" id="user_name" class="form-control" required>
+            <option value="">Select User</option>
+            {% for user in allusers %}
+               <option value="{{user.id}}">{{user.email}}</option> 
+            {% endfor %}
+         </select>
+         <input type="submit" value="Get Survey" id="export"/>
+      </div>
+   </form>
+
+   {% if getsurvey is defined %} 
+      {% if surveycount > 0 %}
+         <div class="col-md-12">
+            <h3>Attempted Survey details</h3>                   
+            {% for survey in usersurvey %}   
+               <div class="col-md-12">
+                  <div class ="topblock">
+                  <h4><strong>Survey Name: </strong> {{survey[0].surveytitle}}</h4><br />
+                  <h4><strong>Event Name: </strong> {{survey[0].eventTitle}}</h4>
+               </div>
+               </div>
+               
+               {% for userResponse in survey %}  
+                  <div class="col-md-12"><strong>Question:- </strong> {{userResponse.question}}</div>
+                  <div class="col-md-12"><strong>Response: </strong> {{userResponse.answer}}</div>
+               {% endfor%}
+               <hr style="height: 30px"/>
+            {% endfor%}
+         </div>
+      {% endif %}
+      {% if surveycount == 0 %}
+         <div class="col-md-12"><h3>This user has not attempted the Survey.</h3></div>
+      {% endif%}
+   {% endif%}
+{% endblock %}

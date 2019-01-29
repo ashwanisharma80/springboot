@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bedassignmanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bedAssignManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ bedAssignManager.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Bedtypeid</th>
+                <td>{{ bedAssignManager.bedTypeId }}</td>
+            </tr>
+            <tr>
+                <th>Assigndate</th>
+                <td>{% if bedAssignManager.assignDate %}{{ bedAssignManager.assignDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dischargedate</th>
+                <td>{% if bedAssignManager.dischargeDate %}{{ bedAssignManager.dischargeDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ bedAssignManager.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ bedAssignManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if bedAssignManager.createdOn %}{{ bedAssignManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if bedAssignManager.modifiedOn %}{{ bedAssignManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if bedAssignManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bedassignmanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('bedassignmanager_edit', { 'id': bedAssignManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

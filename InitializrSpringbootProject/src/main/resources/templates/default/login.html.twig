@@ -1,0 +1,36 @@
+{% extends 'main.html.twig' %}
+
+{% block body %}
+   {% if error %}
+      <div>{{ error.message }}</div>
+   {% endif %}
+
+   
+
+   {% if message is defined  %}
+      <div>{{message }}</div>
+   {% endif %}
+
+   <form  class="form-signin" action="{{ path('login_check') }}" method="post">
+      <div class="input-group input-username">
+         <span class="input-group-addon"><img src="{{asset('assets/images/mess1.png')}}"></span> 
+         <input type="text" id="inputEmail" name="_username" value="{% if defcookie.email is defined %}{{ defcookie.email }} {% endif %}"  class="form-control" placeholder="Email address" required autofocus/>
+      </div>
+      <div class="input-group input-password">
+         <span class="input-group-addon lockSpan"><img class="imgLOck" src="{{asset('assets/images/Lock.png')}}"></span>
+         <input type="password" id="password" name="_password" value="{% if defcookie.password is defined %}{{defcookie.password}}{% endif %}" id="inputPassword" class="form-control" placeholder="Password" required  />
+      </div>
+      <input type="hidden" name="_target_path" value="account" />
+      <div id="remember" class="checkbox">
+         <label>
+            <input type="checkbox" type="checkbox" id="remember_me" name="_remember_me" value="1" {% if defcookie.email is defined %}{% if defcookie.email!="" %} checked='checked' {% endif %}{% endif %} /> Remember me
+         </label><br>
+      </div> 
+      <button class="btn btn-lg btn-default btn-block btn-signin" type="submit">Login</button><br>
+      <div class="loginBottom"> 
+
+         <span> <a href="{{path('forgot_page')}}"> Forgot Password </a> </span> 														
+      </div>
+
+   </form>
+{% endblock %}

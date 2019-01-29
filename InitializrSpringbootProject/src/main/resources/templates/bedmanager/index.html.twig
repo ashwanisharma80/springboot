@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bedmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Bedtype</th>
+                <th>Descriptions</th>
+                <th>Bedcapacity</th>
+                <th>Charge</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bedManager in bedManagers %}
+            <tr>
+                <td><a href="{{ path('bedmanager_show', { 'id': bedManager.id }) }}">{{ bedManager.id }}</a></td>
+                <td>{{ bedManager.bedType }}</td>
+                <td>{{ bedManager.descriptions }}</td>
+                <td>{{ bedManager.bedCapacity }}</td>
+                <td>{{ bedManager.charge }}</td>
+                <td>{{ bedManager.userId }}</td>
+                <td>{% if bedManager.createdOn %}{{ bedManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bedManager.modifiedOn %}{{ bedManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bedManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bedmanager_show', { 'id': bedManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bedmanager_edit', { 'id': bedManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bedmanager_new') }}">Create a new bedManager</a>
+        </li>
+    </ul>
+{% endblock %}

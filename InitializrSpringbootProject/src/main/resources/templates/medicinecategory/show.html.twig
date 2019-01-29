@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicinecategory</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medicineCategory.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ medicineCategory.name }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ medicineCategory.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ medicineCategory.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if medicineCategory.createdOn %}{{ medicineCategory.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if medicineCategory.modifiedOn %}{{ medicineCategory.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if medicineCategory.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicinecategory_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('medicinecategory_edit', { 'id': medicineCategory.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

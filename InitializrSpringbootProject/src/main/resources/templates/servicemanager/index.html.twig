@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Servicemanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Descriptions</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for serviceManager in serviceManagers %}
+            <tr>
+                <td><a href="{{ path('servicemanager_show', { 'id': serviceManager.id }) }}">{{ serviceManager.id }}</a></td>
+                <td>{{ serviceManager.name }}</td>
+                <td>{{ serviceManager.descriptions }}</td>
+                <td>{{ serviceManager.quantity }}</td>
+                <td>{{ serviceManager.rate }}</td>
+                <td>{{ serviceManager.userId }}</td>
+                <td>{% if serviceManager.createdOn %}{{ serviceManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if serviceManager.modifiedOn %}{{ serviceManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if serviceManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('servicemanager_show', { 'id': serviceManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('servicemanager_edit', { 'id': serviceManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('servicemanager_new') }}">Create a new serviceManager</a>
+        </li>
+    </ul>
+{% endblock %}

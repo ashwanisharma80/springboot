@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Insurancemanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ insuranceManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Insurancename</th>
+                <td>{{ insuranceManager.insuranceName }}</td>
+            </tr>
+            <tr>
+                <th>Servicetax</th>
+                <td>{{ insuranceManager.serviceTax }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ insuranceManager.discount }}</td>
+            </tr>
+            <tr>
+                <th>Remarks</th>
+                <td>{{ insuranceManager.remarks }}</td>
+            </tr>
+            <tr>
+                <th>Insuranceno</th>
+                <td>{{ insuranceManager.insuranceNo }}</td>
+            </tr>
+            <tr>
+                <th>Insurancecode</th>
+                <td>{{ insuranceManager.insuranceCode }}</td>
+            </tr>
+            <tr>
+                <th>Hospitalrate</th>
+                <td>{{ insuranceManager.hospitalRate }}</td>
+            </tr>
+            <tr>
+                <th>Insurancerate</th>
+                <td>{{ insuranceManager.insuranceRate }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ insuranceManager.total }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ insuranceManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if insuranceManager.createdOn %}{{ insuranceManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if insuranceManager.modifiedOn %}{{ insuranceManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if insuranceManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('insurancemanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('insurancemanager_edit', { 'id': insuranceManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Investigationreports list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Title</th>
+                <th>Investigationdate</th>
+                <th>Descriptions</th>
+                <th>Doctorid</th>
+                <th>Picture</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for investigationReport in investigationReports %}
+            <tr>
+                <td><a href="{{ path('investigationreport_show', { 'id': investigationReport.id }) }}">{{ investigationReport.id }}</a></td>
+                <td>{{ investigationReport.patientId }}</td>
+                <td>{{ investigationReport.title }}</td>
+                <td>{% if investigationReport.investigationDate %}{{ investigationReport.investigationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ investigationReport.descriptions }}</td>
+                <td>{{ investigationReport.doctorId }}</td>
+                <td>{{ investigationReport.picture }}</td>
+                <td>{{ investigationReport.userId }}</td>
+                <td>{% if investigationReport.createdOn %}{{ investigationReport.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if investigationReport.modifiedOn %}{{ investigationReport.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if investigationReport.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('investigationreport_show', { 'id': investigationReport.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('investigationreport_edit', { 'id': investigationReport.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('investigationreport_new') }}">Create a new investigationReport</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Schedule</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ schedule.id }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ schedule.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Availabledays</th>
+                <td>{{ schedule.availableDays }}</td>
+            </tr>
+            <tr>
+                <th>Availablestarttime</th>
+                <td>{{ schedule.availableStarttime }}</td>
+            </tr>
+            <tr>
+                <th>Endtime</th>
+                <td>{{ schedule.endtime }}</td>
+            </tr>
+            <tr>
+                <th>Perpatienttime</th>
+                <td>{{ schedule.perPatientTime }}</td>
+            </tr>
+           
+            <tr>
+                <th>Active</th>
+                <td>{% if schedule.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('schedule_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('schedule_edit', { 'id': schedule.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

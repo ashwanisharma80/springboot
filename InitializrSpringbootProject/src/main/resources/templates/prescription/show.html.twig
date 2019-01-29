@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prescription</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prescription.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ prescription.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Foodalergies</th>
+                <td>{{ prescription.foodalergies }}</td>
+            </tr>
+            <tr>
+                <th>Tendencybleed</th>
+                <td>{{ prescription.tendencyBleed }}</td>
+            </tr>
+            <tr>
+                <th>Heartdisease</th>
+                <td>{{ prescription.heartdisease }}</td>
+            </tr>
+            <tr>
+                <th>Highbloodpressure</th>
+                <td>{{ prescription.highbloodpressure }}</td>
+            </tr>
+            <tr>
+                <th>Diabetic</th>
+                <td>{{ prescription.diabetic }}</td>
+            </tr>
+            <tr>
+                <th>Surgery</th>
+                <td>{{ prescription.surgery }}</td>
+            </tr>
+            <tr>
+                <th>Accident</th>
+                <td>{{ prescription.accident }}</td>
+            </tr>
+            <tr>
+                <th>Others</th>
+                <td>{{ prescription.others }}</td>
+            </tr>
+            <tr>
+                <th>Familymedicalhistory</th>
+                <td>{{ prescription.familyMedicalHistory }}</td>
+            </tr>
+            <tr>
+                <th>Currentmedication</th>
+                <td>{{ prescription.currentMedication }}</td>
+            </tr>
+            <tr>
+                <th>Femalepregnancy</th>
+                <td>{{ prescription.femalePregnancy }}</td>
+            </tr>
+            <tr>
+                <th>Breastfeeding</th>
+                <td>{{ prescription.breastFeeding }}</td>
+            </tr>
+            <tr>
+                <th>Healthinsurance</th>
+                <td>{{ prescription.healthInsurance }}</td>
+            </tr>
+            <tr>
+                <th>Lowincome</th>
+                <td>{{ prescription.lowincome }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ prescription.reference }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if prescription.createdOn %}{{ prescription.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if prescription.modifiedOn %}{{ prescription.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if prescription.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prescription_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('prescription_edit', { 'id': prescription.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -6,6 +6,10 @@
         "th:replace": {},
         "th:field": {
             "context": "input"
-        }
+        },
+        "th:href": {
+            "context": "a"
+        },
+        "th:each": {}
     }
 }

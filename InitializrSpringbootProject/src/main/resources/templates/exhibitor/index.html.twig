@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="table-responsive">
+        <div style="text-align: center">
+            <h1>Exhibitors List</h1>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Sr.</th>
+                        <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
+                        <th{% if pagination.isSorted('a.boothno') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Boothno', 'a.boothno') }}</th>
+                        <th{% if pagination.isSorted('a.location') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Location', 'a.location') }}</th>
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set cntr=0 %}
+                    {% for exhibitor in pagination %}
+                        {% set cntr=cntr+1 %}
+                        <tr>
+                            <td>{{cntr}}</td>    <td>{{ exhibitor.name }}</td>
+                            <td>{{ exhibitor.boothno }}</td>
+                            <td>{{ exhibitor.location }}</td>
+                            <td>{% if exhibitor.createdOn %}<img src="{{asset(exhibitor.image|replace({"web/":""}))}}" width="100" height="100" />{% endif %}</td>
+                            <td>{{exhibitor.categoryIds|join(',')}}</td>
+                            <td>
+
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('exhibitor_edit', { 'id': exhibitor.id }) }}">Edit</a> |
+
+                                        <a href="{{ path('exhibitor_delete', { 'id': exhibitor.id }) }}">Remove</a>
+                                    </li>
+
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('exhibitor_new') }}" style="text-decoration: underline;">Create a new exhibitor</a>
+        </li>
+    </ul>
+{% endblock %}

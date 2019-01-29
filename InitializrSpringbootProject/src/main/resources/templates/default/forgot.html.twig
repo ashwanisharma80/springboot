@@ -1,0 +1,27 @@
+{% extends 'main.html.twig' %}
+{% block title %}Forgot Password{% endblock %}
+{% block body %}
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+    <form class="form-forgot" method="post" action="{{path('forgot_page')}}">
+        <div class="forgot">
+            <input type="button" value="Back" onClick="history.go(-1);
+                           return true;" class="cls">
+            <h4 class="text-center">Forgot Password ?</h4>
+        </div><br>
+        <p class="text-center">Please enter your register email address to reset <br>the password</p>
+        <fieldset>
+            <center>
+                <div class="form-group">
+                    <div class="input-group">                                      
+                        <input id="emailInput" name="email" placeholder="email address" class="form-control1" type="email" required ! >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-default btn-signin" value="Next" type="submit">
+                </div><br><br>
+            </center>
+        </fieldset>
+    </form>
+{% endblock %}

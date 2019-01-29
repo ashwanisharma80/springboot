@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicinecategories list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Descriptions</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicineCategory in medicineCategories %}
+            <tr>
+                <td><a href="{{ path('medicinecategory_show', { 'id': medicineCategory.id }) }}">{{ medicineCategory.id }}</a></td>
+                <td>{{ medicineCategory.name }}</td>
+                <td>{{ medicineCategory.descriptions }}</td>
+                <td>{{ medicineCategory.userId }}</td>
+                <td>{% if medicineCategory.createdOn %}{{ medicineCategory.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if medicineCategory.modifiedOn %}{{ medicineCategory.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if medicineCategory.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medicinecategory_show', { 'id': medicineCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medicinecategory_edit', { 'id': medicineCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicinecategory_new') }}">Create a new medicineCategory</a>
+        </li>
+    </ul>
+{% endblock %}

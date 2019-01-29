@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Billmanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ billManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Aid</th>
+                <td>{{ billManager.aid }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ billManager.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Billdate</th>
+                <td>{% if billManager.billdate %}{{ billManager.billdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Paymentmethod</th>
+                <td>{{ billManager.paymentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Cardcheqno</th>
+                <td>{{ billManager.cardCheqNo }}</td>
+            </tr>
+            <tr>
+                <th>Receiptno</th>
+                <td>{{ billManager.receiptNo }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ billManager.notes }}</td>
+            </tr>
+            <tr>
+                <th>Paid</th>
+                <td>{% if billManager.paid %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ billManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if billManager.createdOn %}{{ billManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if billManager.modifiedOn %}{{ billManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if billManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('billmanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('billmanager_edit', { 'id': billManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

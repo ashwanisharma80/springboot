@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mail</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mail.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ mail.email }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ mail.subject }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ mail.message }}</td>
+            </tr>
+            <tr>
+                <th>Attachment</th>
+                <td>{{ mail.attachment }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ mail.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if mail.createdOn %}{{ mail.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if mail.modifiedOn %}{{ mail.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mails_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mails_edit', { 'id': mail.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

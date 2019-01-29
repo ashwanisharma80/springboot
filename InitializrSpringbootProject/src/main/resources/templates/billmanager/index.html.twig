@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Billmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Aid</th>
+                <th>Patientid</th>
+                <th>Billdate</th>
+                <th>Paymentmethod</th>
+                <th>Cardcheqno</th>
+                <th>Receiptno</th>
+                <th>Notes</th>
+                <th>Paid</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for billManager in billManagers %}
+            <tr>
+                <td><a href="{{ path('billmanager_show', { 'id': billManager.id }) }}">{{ billManager.id }}</a></td>
+                <td>{{ billManager.aid }}</td>
+                <td>{{ billManager.patientId }}</td>
+                <td>{% if billManager.billdate %}{{ billManager.billdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ billManager.paymentMethod }}</td>
+                <td>{{ billManager.cardCheqNo }}</td>
+                <td>{{ billManager.receiptNo }}</td>
+                <td>{{ billManager.notes }}</td>
+                <td>{% if billManager.paid %}Yes{% else %}No{% endif %}</td>
+                <td>{{ billManager.userId }}</td>
+                <td>{% if billManager.createdOn %}{{ billManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if billManager.modifiedOn %}{{ billManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if billManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('billmanager_show', { 'id': billManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('billmanager_edit', { 'id': billManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('billmanager_new') }}">Create a new billManager</a>
+        </li>
+    </ul>
+{% endblock %}

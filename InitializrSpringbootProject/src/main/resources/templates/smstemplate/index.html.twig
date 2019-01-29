@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Smstemplates list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Temptype</th>
+                <th>Template</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sMSTemplate in sMSTemplates %}
+            <tr>
+                <td><a href="{{ path('smstemplate_show', { 'id': sMSTemplate.id }) }}">{{ sMSTemplate.id }}</a></td>
+                <td>{{ sMSTemplate.name }}</td>
+                <td>{{ sMSTemplate.tempType }}</td>
+                <td>{{ sMSTemplate.template }}</td>
+                <td>{{ sMSTemplate.userId }}</td>
+                <td>{% if sMSTemplate.createdOn %}{{ sMSTemplate.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sMSTemplate.modifiedOn %}{{ sMSTemplate.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sMSTemplate.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('smstemplate_show', { 'id': sMSTemplate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('smstemplate_edit', { 'id': sMSTemplate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('smstemplate_new') }}">Create a new sMSTemplate</a>
+        </li>
+    </ul>
+{% endblock %}

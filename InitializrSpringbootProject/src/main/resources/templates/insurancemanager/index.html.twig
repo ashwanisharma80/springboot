@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Insurancemanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Insurancename</th>
+                <th>Servicetax</th>
+                <th>Discount</th>
+                <th>Remarks</th>
+                <th>Insuranceno</th>
+                <th>Insurancecode</th>
+                <th>Hospitalrate</th>
+                <th>Insurancerate</th>
+                <th>Total</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for insuranceManager in insuranceManagers %}
+            <tr>
+                <td><a href="{{ path('insurancemanager_show', { 'id': insuranceManager.id }) }}">{{ insuranceManager.id }}</a></td>
+                <td>{{ insuranceManager.insuranceName }}</td>
+                <td>{{ insuranceManager.serviceTax }}</td>
+                <td>{{ insuranceManager.discount }}</td>
+                <td>{{ insuranceManager.remarks }}</td>
+                <td>{{ insuranceManager.insuranceNo }}</td>
+                <td>{{ insuranceManager.insuranceCode }}</td>
+                <td>{{ insuranceManager.hospitalRate }}</td>
+                <td>{{ insuranceManager.insuranceRate }}</td>
+                <td>{{ insuranceManager.total }}</td>
+                <td>{{ insuranceManager.userId }}</td>
+                <td>{% if insuranceManager.createdOn %}{{ insuranceManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if insuranceManager.modifiedOn %}{{ insuranceManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if insuranceManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('insurancemanager_show', { 'id': insuranceManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('insurancemanager_edit', { 'id': insuranceManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('insurancemanager_new') }}">Create a new insuranceManager</a>
+        </li>
+    </ul>
+{% endblock %}

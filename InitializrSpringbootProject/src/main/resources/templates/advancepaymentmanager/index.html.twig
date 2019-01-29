@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card-body">
+
+                <div class="col-3"><a href="{{ path('advancepaymentmanager_new') }}">Create New</a></div>
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th{% if pagination.isSorted('a.id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                            <th>Aid</th>
+                            <th>Patientid</th>
+                            <th>Amount</th>
+                            <th>Paymentmethod</th>
+                            <th>Cashcardcheque</th>
+                            <th>Receiptno</th>
+                            <th>Userid</th>
+                            <th>Createdon</th>
+                            <th>Modifiedon</th>
+                            <th>Active</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for advancePaymentManager in pagination %}
+                            <tr>
+                                <td><a href="{{ path('advancepaymentmanager_show', { 'id': advancePaymentManager.id }) }}">{{ advancePaymentManager.id }}</a></td>
+                                <td>{{ advancePaymentManager.aid }}</td>
+                                <td>{{ advancePaymentManager.patientId }}</td>
+                                <td>{{ advancePaymentManager.amount }}</td>
+                                <td>{{ advancePaymentManager.paymentMethod }}</td>
+                                <td>{{ advancePaymentManager.cashCardCheque }}</td>
+                                <td>{{ advancePaymentManager.receiptNo }}</td>
+                                <td>{{ advancePaymentManager.userId }}</td>
+                                <td>{% if advancePaymentManager.createdOn %}{{ advancePaymentManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{% if advancePaymentManager.modifiedOn %}{{ advancePaymentManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{% if advancePaymentManager.active %}Yes{% else %}No{% endif %}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('advancepaymentmanager_show', { 'id': advancePaymentManager.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('advancepaymentmanager_edit', { 'id': advancePaymentManager.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div></div>
+    </div>
+
+{% endblock %}

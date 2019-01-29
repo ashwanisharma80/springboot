@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Packagemanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ packageManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ packageManager.name }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ packageManager.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Packageincluding</th>
+                <td>{{ packageManager.packageIncluding }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ packageManager.discount }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ packageManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if packageManager.createdOn %}{{ packageManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if packageManager.modifiedOn %}{{ packageManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if packageManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('packagemanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('packagemanager_edit', { 'id': packageManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Patient</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Patient Id</th>
+                <td>{{ patient.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Fname</th>
+                <td>{{ patient.fname }}</td>
+            </tr>
+            <tr>
+                <th>Lname</th>
+                <td>{{ patient.lname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ patient.email }}</td>
+            </tr>
+
+            <tr>
+                <th>Phone</th>
+                <td>{{ patient.phone }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ patient.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Bloodgroup</th>
+                <td>{{ patient.bloodgroup }}</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>{{ patient.sex }}</td>
+            </tr>
+            <tr>
+                <th>Dob</th>
+                <td>{% if patient.dob %}{{ patient.dob|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td><img src="{{asset(patient.picture|replace({"web/":""}))}}" width="100px" height="150px" /></td>
+
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ patient.address }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if patient.createdOn %}{{ patient.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+
+            <tr>
+                <th>Active</th>
+                <td>{% if patient.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('patient_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('patient_edit', { 'id': patient.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

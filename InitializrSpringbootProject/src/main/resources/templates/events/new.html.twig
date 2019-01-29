@@ -1,0 +1,107 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  {{error}}
+
+  <h1 style="margin-right:100px;">Events Creation</h1>
+
+  {{ form_start(form) }}
+  <div>{{ form_label(form.title) }}
+    {{ form_errors(form.title) }}
+    {{ form_widget(form.title) }}</div>
+  <div>{{ form_label(form.description) }}
+    {{ form_errors(form.description) }}
+    {{ form_widget(form.description) }}</div><br>
+		<div id="start"><h6>StartTime</h6></div><div id="end"><h6>EndTime</h6></div>
+  <div><label for="events_event_schedule" class="required">Event Schedule</label>
+
+   <input id="events_event_schedule" name="events[event_schedule]" required="required" class="datepicker" type="text">
+   <input id="events_event_schedule1" name="events[event_endschedule]" required="required" class="datepicker" type="text">
+    <a href="javascript:void(0);" id="add" class="add_button" style="color:#000;position:relative;top:4px;"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
+    <div id="event_Schedule" class="event_Schedule">
+    </div>
+  </div>
+  <div>{{ form_label(form.logo) }}
+    {{ form_errors(form.logo) }}
+    {{ form_widget(form.logo) }}</div>
+  <div>{{ form_label(form.event_Image) }}
+    {{ form_errors(form.event_Image) }}
+    {{ form_widget(form.event_Image) }}<a href="javascript:void(0);" id="add1" ><i class="fa fa-plus-circle fa-2x" aria-hidden="true" style="color:#000;position:relative;top:10px;"></i></a></div>
+  <div id="event_Image" class="event_Image">
+  </div>
+  <div>{{ form_label(form.location) }}
+    {{ form_errors(form.location) }}
+    {{ form_widget(form.location) }}</div>
+  <div>{{ form_label(form.address) }}
+    {{ form_errors(form.address) }}
+    {{ form_widget(form.address) }}</div>
+
+  <div>{{ form_label(form.website) }}
+    {{ form_errors(form.website) }}
+    {{ form_widget(form.website) }}</div>
+
+  <div>{{ form_label(form.faqslink) }}
+    {{ form_errors(form.faqslink) }}
+    {{ form_widget(form.faqslink) }}</div>
+  <div>{{ form_label(form.schedulelink) }}
+    {{ form_errors(form.schedulelink) }}
+    {{ form_widget(form.schedulelink) }}</div>
+  <div>{{ form_label(form.exhibitorIds) }}
+    {{ form_errors(form.exhibitorIds) }}
+    {{ form_widget(form.exhibitorIds) }}</div>
+  <div>{{ form_label(form.active) }}
+    {{ form_errors(form.active) }}
+    {{ form_widget(form.active) }}</div>
+  <input type="submit" name="create" value="Create" />
+  {{ form_end(form) }}
+
+  <ul>
+    <li>
+      <a href="{{ path('events_index') }}">Back to the list</a>
+    </li>
+  </ul>
+
+
+  <script type="text/javascript">
+    $(function () {
+      jQuery.noConflict();
+      //fadeout selected item and remove
+      $('.remove').live('click', function () {
+        $(this).parent().fadeOut(300, function () {
+          $(this).empty();
+          return false;
+        });
+      });
+      var options = '<p><input type="text" class="datepicker" name="event_schedules[]" id="eventSch" value="" size="10" style="margin-left:250px;"/><input type="text" class="datepicker" name="event_endschedules[]" id="eventSch" value="" size="10" /><i class="remove fa fa-minus-circle fa-2x" aria-hidden="true" style="display: inline; position: relative; top: 4px; margin-left:4px;"></i></p>';
+
+      //add input
+      $('a#add').click(function () {
+        if ($('.datepicker').length < 4) {
+          $(options).fadeIn("slow").appendTo('#event_Schedule');
+          i++;
+          return false;
+        }else{
+          alert("Maximum two dates range allowed");
+        }
+      });
+
+      $('.datepicker').live('click', function () {
+        $(this).datetimepicker({
+          format:'Y-m-d H:i', //D, l, M, F, Y-m-d H:i:s
+        }).focus();
+       // $(this).datepicker('destroy').datepicker({changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", yearRange: "1900:+10", showOn: 'focus'}).focus();
+      });
+      var options2 = '<p><input type="file" name="event_Image[]" id="eventImg" value="" size="10" />  <i class="remove fa fa-minus-circle fa-2x" aria-hidden="true" style="color:#000;position:relative;top:10px;"></i></p>';
+
+      //add input
+      $('a#add1').click(function () {
+        $(options2).fadeIn("slow").appendTo('#event_Image');
+        i++;
+        return false;
+      });
+
+    });
+  </script>
+{% endblock %}
+

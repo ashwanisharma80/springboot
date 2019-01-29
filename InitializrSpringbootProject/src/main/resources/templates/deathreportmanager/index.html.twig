@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Deathreportmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Deathdate</th>
+                <th>Title</th>
+                <th>Descriptions</th>
+                <th>Doctorid</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deathReportManager in deathReportManagers %}
+            <tr>
+                <td><a href="{{ path('deathreportmanager_show', { 'id': deathReportManager.id }) }}">{{ deathReportManager.id }}</a></td>
+                <td>{{ deathReportManager.patientId }}</td>
+                <td>{% if deathReportManager.deathDate %}{{ deathReportManager.deathDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ deathReportManager.title }}</td>
+                <td>{{ deathReportManager.descriptions }}</td>
+                <td>{{ deathReportManager.doctorId }}</td>
+                <td>{{ deathReportManager.userId }}</td>
+                <td>{% if deathReportManager.createdOn %}{{ deathReportManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if deathReportManager.modifiedOn %}{{ deathReportManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if deathReportManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('deathreportmanager_show', { 'id': deathReportManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('deathreportmanager_edit', { 'id': deathReportManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('deathreportmanager_new') }}">Create a new deathReportManager</a>
+        </li>
+    </ul>
+{% endblock %}

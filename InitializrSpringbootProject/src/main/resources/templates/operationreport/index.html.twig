@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Operationreports list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Operationdate</th>
+                <th>Title</th>
+                <th>Descriptions</th>
+                <th>Doctorid</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for operationReport in operationReports %}
+            <tr>
+                <td><a href="{{ path('operationreport_show', { 'id': operationReport.id }) }}">{{ operationReport.id }}</a></td>
+                <td>{{ operationReport.patientId }}</td>
+                <td>{% if operationReport.operationDate %}{{ operationReport.operationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ operationReport.title }}</td>
+                <td>{{ operationReport.descriptions }}</td>
+                <td>{{ operationReport.doctorId }}</td>
+                <td>{{ operationReport.userId }}</td>
+                <td>{% if operationReport.createdOn %}{{ operationReport.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if operationReport.modifiedOn %}{{ operationReport.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if operationReport.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('operationreport_show', { 'id': operationReport.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('operationreport_edit', { 'id': operationReport.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operationreport_new') }}">Create a new operationReport</a>
+        </li>
+    </ul>
+{% endblock %}

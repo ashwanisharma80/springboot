@@ -1,0 +1,89 @@
+{% extends 'survey.html.twig' %}
+{% block body %}
+    <style>
+
+       body
+	   {
+	   margin:0px;
+	   padding:0px;
+	   }
+        .serveye .serve h1{
+            padding: 20px 0px;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0px;
+            text-align: center;
+        }
+        .serveye .serve h2{
+            padding: 15px 0px;
+            background-color: #FDD903;
+            color: #000000;
+            margin: 0px;
+            text-align: center;
+        }
+
+        .serveye .intro p{
+            font-size: 18px;
+            padding-left:15px;
+            padding-right:15px;
+            padding-top: 20px;
+			overflow-y:scroll;
+			height:400px;
+			margin:0px;
+        }
+        .serveye .stratServ, .serveye .stratServ:hover{
+            width: 95%;
+            font-size: 20px;
+            border: none;
+            text-transform: uppercase;
+            background-color: #FDD903;
+            padding:8px;
+			-webkit-appearance:none;
+			border-radius:5px;
+			margin-top:15px;
+			margin-left: 10px;
+			
+			
+			
+        }
+		.intro_cen{
+		text-align:center;
+		}
+		
+
+    </style>
+    <input type="hidden" name="token" value="{% if token is defined %}{{token}}{% endif %}" />
+    <div class="serveye">
+        {% if intro is defined %}
+            <div class="serve">      
+
+                <h2>Introduction</h2>
+            </div>
+            <div class="intro">
+                <p>{{intro}}</p>
+            </div>
+
+            <div class="next">
+            <div class="intro_cen">
+              
+               <p> {% if error is defined %}
+                    {{error}}
+                {% else %}   </div> 
+                    <input type="button" id="start" class="btn btn-primary stratServ" value="START SURVEY" />
+                {% endif %}
+            </div>
+        {% else %}
+            {{error}}
+        {% endif %}
+    </div>
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery.noConflict();
+            jQuery('#start').click(function () {
+        {% if survey_id is defined %}
+                            window.location.href = "{{path('mobile_survey',{'survey_id':survey_id,'token':token,'offset':offset})}}"
+        {% endif %}
+                      });
+                  });
+    </script>
+{% endblock %}

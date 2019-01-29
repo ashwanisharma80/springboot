@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Casemanager_patients list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Casemanagerid</th>
+                <th>Refdoctorname</th>
+                <th>Hospitalname</th>
+                <th>Hospitaladdress</th>
+                <th>Doctorname</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for casemanager_Patient in casemanager_Patients %}
+            <tr>
+                <td><a href="{{ path('casemanager_patient_show', { 'id': casemanager_Patient.id }) }}">{{ casemanager_Patient.id }}</a></td>
+                <td>{{ casemanager_Patient.patientId }}</td>
+                <td>{{ casemanager_Patient.caseManagerId }}</td>
+                <td>{{ casemanager_Patient.refDoctorName }}</td>
+                <td>{{ casemanager_Patient.hospitalName }}</td>
+                <td>{{ casemanager_Patient.hospitalAddress }}</td>
+                <td>{{ casemanager_Patient.doctorName }}</td>
+                <td>{{ casemanager_Patient.userId }}</td>
+                <td>{% if casemanager_Patient.createdOn %}{{ casemanager_Patient.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ casemanager_Patient.modifiedOn }}</td>
+                <td>{% if casemanager_Patient.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('casemanager_patient_show', { 'id': casemanager_Patient.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('casemanager_patient_edit', { 'id': casemanager_Patient.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('casemanager_patient_new') }}">Create a new casemanager_Patient</a>
+        </li>
+    </ul>
+{% endblock %}

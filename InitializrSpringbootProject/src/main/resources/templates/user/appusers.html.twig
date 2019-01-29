@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="table-responsive">
+      <div style="text-align: center">
+
+         <h1>Application Users List</h1>
+         <table class="table table-bordered table-hover">
+
+            <thead>
+
+               <tr>
+                  {# sorting of properties based on query components #}
+                  <th>Sr.</th>
+                  <th{% if pagination.isSorted('a.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
+                  <th{% if pagination.isSorted('a.phone') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email', 'a.email') }}</th>
+
+                  <th{% if pagination.isSorted('a.createdOn') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created On', 'a.createdOn') }}</th>
+                  <th>Actions</th>
+
+               </tr>
+            </thead>
+
+            <tbody> {% set cntr=0 %}
+               {% for user in pagination %}
+                  {% set cntr=cntr+1 %}
+                  <tr>
+                     <td>{{cntr}}</td>
+                     <td>{{ user.name }} {{ user.lname }}</td>
+                     <td>{{ user.email }}</td>
+                     <td>{% if user.createdOn %}{{ user.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                     <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                           <ul>
+                              <li>
+                                 <a onclick="javascript:if (!confirm('Do you want to remove this record ?'))
+                                  return false;" href="{{ path('user_delete', { 'id': user.id }) }}">Remove</a>
+                              </li>
+
+                           </ul>
+                        {% endif %}
+                     </td>
+                  </tr>
+
+               {% endfor %}
+            </tbody>
+         </table></div></div><br>
+   <div class="navigation">
+      {{ knp_pagination_render(pagination) }}
+   </div>
+
+
+{% endblock %}

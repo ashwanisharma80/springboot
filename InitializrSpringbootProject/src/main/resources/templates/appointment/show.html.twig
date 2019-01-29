@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Appointment</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appointment.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ appointment.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Departmentid</th>
+                <td>{{ appointment.departmentId }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ appointment.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Appointmentdate</th>
+                <td>{% if appointment.appointmentDate %}{{ appointment.appointmentDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Serialno</th>
+                <td>{{ appointment.serialno }}</td>
+            </tr>
+            <tr>
+                <th>Problem</th>
+                <td>{{ appointment.problem }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if appointment.createdOn %}{{ appointment.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if appointment.modifiedOn %}{{ appointment.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if appointment.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('appointment_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('appointment_edit', { 'id': appointment.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

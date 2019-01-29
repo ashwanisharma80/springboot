@@ -12,7 +12,7 @@
                     <meta name="description" content="">
                         <meta name="author" content="">
 
-                            <title>Spring Boot Application</title>
+                            <title>Hospital Management Application</title>
 
                             <!-- Bootstrap Core CSS -->
                             <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -115,10 +115,10 @@
                                                                         <li>
                                                                             <a href="#">
                                                                                 <div>
-                                                                                    <p>
+                                                                                    
                                                                                         <strong>Task 1</strong>
                                                                                         <span class="pull-right text-muted">40% Complete</span>
-                                                                                    </p>
+                                                                                    
                                                                                     <div class="progress progress-striped active">
                                                                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                                                                             <span class="sr-only">40% Complete (success)</span>
@@ -131,10 +131,10 @@
                                                                         <li>
                                                                             <a href="#">
                                                                                 <div>
-                                                                                    <p>
+                                                                                    
                                                                                         <strong>Task 2</strong>
                                                                                         <span class="pull-right text-muted">20% Complete</span>
-                                                                                    </p>
+                                                                                    
                                                                                     <div class="progress progress-striped active">
                                                                                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                                                                                             <span class="sr-only">20% Complete</span>
@@ -147,10 +147,10 @@
                                                                         <li>
                                                                             <a href="#">
                                                                                 <div>
-                                                                                    <p>
+                                                                                    
                                                                                         <strong>Task 3</strong>
                                                                                         <span class="pull-right text-muted">60% Complete</span>
-                                                                                    </p>
+                                                                                    
                                                                                     <div class="progress progress-striped active">
                                                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                                                                                             <span class="sr-only">60% Complete (warning)</span>
@@ -163,10 +163,10 @@
                                                                         <li>
                                                                             <a href="#">
                                                                                 <div>
-                                                                                    <p>
+                                                                                    
                                                                                         <strong>Task 4</strong>
                                                                                         <span class="pull-right text-muted">80% Complete</span>
-                                                                                    </p>
+                                                                                    
                                                                                     <div class="progress progress-striped active">
                                                                                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                                                                                             <span class="sr-only">80% Complete (danger)</span>
@@ -267,40 +267,1053 @@
 
                                                             <div class="navbar-default sidebar" role="navigation">
                                                                 <div class="sidebar-nav navbar-collapse">
+
+                                                                    <!-- Sidebar Menu -->
+                                                                    <nav class="mt-2">
+                                                                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                                                            <!-- Add icons to the links using the .nav-icon class
+                                                                                 with font-awesome or any other icon font library -->
+                                                                           
+                                                                        </ul>
+                                                                    </nav>
+                                                                    <!-- /.sidebar-menu -->
                                                                     <ul class="nav" id="side-menu">
-                                                                        <li>
-                                                                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> User<span class="fa arrow"></span></a>
-                                                                            <ul class="nav nav-second-level">
-                                                                                <li>
-                                                                                    <a href="/add">Add</a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="/list">List</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <!-- /.nav-second-level -->
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Questions<span class="fa arrow"></span></a>
-                                                                            <ul class="nav nav-second-level">
-                                                                                <li>
-                                                                                    <a href="/Questions/add">Add</a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="/Questions/list">List</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <!-- /.nav-second-level -->
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="javascript:void(0);"><i class="fa fa-table fa-fw"></i> Tables</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="javascript:void(0);"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                                                                        </li>
+                                                                         <li>
+                                                                                <a href="/">
+                                                                                    <i class="nav-icon fa fa-dashboard"></i>
+                                                                                        Dashboard
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                        Department
+                                                                                        
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li>
+                                                                                        <a href="{{ path('department_new') }}" class="nav-link">
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            Add
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('department_index') }}" class="nav-link">
+                                                                                                    <i class="fa fa-circle-o nav-icon"></i>
+                                                                                        Department List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Doctor
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('doctor_new') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Doctor
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('doctor_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Doctor List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Patient
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('patient_new') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Patient
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('patient_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Patient List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('document_new') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Document
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('document_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Document List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Schedule
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Schedule
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Schedule List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Appointment
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Appointment
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Appointment List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Assign by All
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Assign by Doctor
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Assign by Representative
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Assign to Doctor
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Prescription
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Patient Case Study
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Patient Case Study List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Prescription List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Account Manager
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Account
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Account List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Invoice
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Invoice List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Payment
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Payment List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Account List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                        <li class="nav-item">
+                                                                                            <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                                <i class="fa fa-circle-o nav-icon"></i>
+                                                                                                
+                                                                                                    Debit Report
+                                                                                                    <!--span class="right badge badge-danger">New</span-->
+                                                                                                
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="nav-item">
+                                                                                            <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                                <i class="fa fa-circle-o nav-icon"></i>
+                                                                                                
+                                                                                                    Credit Report
+                                                                                                    <!--span class="right badge badge-danger">New</span-->
+                                                                                                
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="nav-item">
+                                                                                            <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                                <i class="fa fa-circle-o nav-icon"></i>
+                                                                                                
+                                                                                                    Account List
+                                                                                                    <!--span class="right badge badge-danger">New</span-->
+                                                                                                
+                                                                                            </a>
+                                                                                        </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- end account-->
+                                                                            <!--Insurance -->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Insurance
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Insurance
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Insurance List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Limit Approval
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Limit Approval List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Insurance-->
+                                                                            <!--Billing -->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Billing
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Service
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Service List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Package
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Package List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Patient Admission
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Patient Admission List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Advance Payment
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Advance Payment List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Bill
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Bill List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Billing-->
+                                                                            <!--Human Resources -->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Human Resources
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Employee
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Accountant List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Laboratorist List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Nurse List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Pharmacist Admission
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Receptionist List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Representative List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Case Manager List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Human Resources-->
+
+                                                                            <!--Bed Manager-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Bed Manager
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Bed
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Bed List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Bed Assign
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Bed Assign List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Bed Manager-->
+                                                                            <!--Notice Board-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Notice Board
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Notice
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Notice List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Notice Board-->
+                                                                            <!--Case Manager-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Case Manager
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Patient
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Patient List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Case Manager-->
+                                                                            <!--Hospital Activities-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Hospital Activities
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Birth Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Birth Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Death Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Death Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Operation Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Operation Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Investigation Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Investigation Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Medicine Category
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Medicine Category List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Add Medicine 
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Medicine List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!-- End Hospital Activities-->
+                                                                            <!--Enquiry-->
+                                                                            <li class="nav-item menu-open">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-bell-o"></i>
+                                                                                    
+                                                                                        Enquiry
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                            </li>
+                                                                            <!-- End Enquiry-->
+                                                                            <!-- setting-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th"></i>
+                                                                                    
+                                                                                        Setting
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                App Setting
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!--End setting-->
+                                                                            <!-- SMS-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th fa-comments-o"></i>
+                                                                                    
+                                                                                        SMS
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Gateway Setting
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                SMS Template
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                SMS Schedule
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Send Custom SMS
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Custom SMS List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Auto SMS Report
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                User SMS List
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!--End SMS-->
+                                                                            <!-- Messages-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th fa-comments-o"></i>
+                                                                                    
+                                                                                        Messages
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                New Message
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Inbox
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Sent
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!--End Messages-->
+                                                                            <!-- Mail-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th fa-envelope"></i>
+                                                                                    
+                                                                                        Mail
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Send Mail
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Mail Setting
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!--End Mail-->
+                                                                            <!-- Website-->
+                                                                            <li class="nav-item has-treeview">
+                                                                                <a href="#" class="nav-link">
+                                                                                    <i class="nav-icon fa fa-th fa-safari"></i>
+                                                                                    
+                                                                                        Website
+                                                                                        
+                                                                                    
+                                                                                </a>
+                                                                                <ul class="nav nav-second-level">
+                                                                                    <li class="nav-item">
+                                                                                        <a href="{{ path('account_index') }}" class="nav-link">
+                                                                                            <i class="fa fa-circle-o nav-icon"></i>
+                                                                                            
+                                                                                                Setting
+                                                                                                <!--span class="right badge badge-danger">New</span-->
+                                                                                            
+                                                                                        </a>
+                                                                                    </li> 
+
+
+                                                                                </ul>
+                                                                            </li>
+                                                                            <!--End Website-->
                                                                     </ul>
                                                                 </div>
                                                                 <!-- /.sidebar-collapse -->

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicines list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Medicinecategoryid</th>
+                <th>Descriptions</th>
+                <th>Price</th>
+                <th>Manufacturedby</th>
+                <th>Userid</th>
+                <th>Createdby</th>
+                <th>Modifiedby</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicine in medicines %}
+            <tr>
+                <td><a href="{{ path('medicine_show', { 'id': medicine.id }) }}">{{ medicine.id }}</a></td>
+                <td>{{ medicine.name }}</td>
+                <td>{{ medicine.medicinecategoryId }}</td>
+                <td>{{ medicine.descriptions }}</td>
+                <td>{{ medicine.price }}</td>
+                <td>{{ medicine.manufacturedBy }}</td>
+                <td>{{ medicine.userId }}</td>
+                <td>{% if medicine.createdBy %}{{ medicine.createdBy|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if medicine.modifiedBy %}{{ medicine.modifiedBy|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if medicine.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medicine_show', { 'id': medicine.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medicine_edit', { 'id': medicine.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicine_new') }}">Create a new medicine</a>
+        </li>
+    </ul>
+{% endblock %}

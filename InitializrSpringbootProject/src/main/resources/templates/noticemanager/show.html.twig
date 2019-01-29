@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Noticemanager</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ noticeManager.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ noticeManager.title }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ noticeManager.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{% if noticeManager.startDate %}{{ noticeManager.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{% if noticeManager.endDate %}{{ noticeManager.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ noticeManager.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if noticeManager.createdOn %}{{ noticeManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if noticeManager.modifiedOn %}{{ noticeManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if noticeManager.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('noticemanager_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('noticemanager_edit', { 'id': noticeManager.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

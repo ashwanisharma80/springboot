@@ -1,0 +1,41 @@
+{% xlsdocument %}
+{% xlssheet 'SurveyExport' {columnDimension:{'default':  {
+            autoSize: true,
+            collapsed: false,
+            outlineLevel: 0,
+            visible: true,
+            xfIndex: 0,        
+        }}} %}
+
+
+{% xlsrow %}
+{% xlscell 0 {style:{font:{ size: '11' ,bold:'1'} ,alignment:{horizontal:'center'}} ,merge:3} %}{{surveyTitle}}{% endxlscell %}
+{% endxlsrow %}
+{% xlsrow %}
+
+{% xlscell { style: { font: { size: '11' ,bold:'1'} ,alignment:{horizontal:'center'}} ,merge:3} %}{{eventTitle}}{% endxlscell %}
+{% endxlsrow %}
+{% xlsrow %}
+{% xlscell { style: { font: { size: '11' } },merge:1 } %}Total number of users attempted the survey = {{totalNumberOfUsers}}{% endxlscell %}
+{% endxlsrow %}
+
+{% xlsrow %}
+{% xlscell { style: { font: { size: '11' } } } %}{% endxlscell %}
+{% endxlsrow %}
+
+{% for questionData in questionsData %}
+   {% xlsrow %}
+   {% xlscell %} {{"Question: "~questionData.question }}{% endxlscell %}
+   {% endxlsrow %}
+   {% xlsrow %}
+   {%for key,response in questionData.responses%}
+      {% xlscell { style: { font: { size: '11' } } } %}{{response.optionText ~ "("~ response.optionCount~")" }}{% endxlscell %}
+   {% endfor %}
+   {% endxlsrow %}
+
+   {% xlsrow %}
+   {% xlscell { style: { font: { size: '11' } } } %}{% endxlscell %}
+   {% endxlsrow %}
+{% endfor %}
+{% endxlssheet %}
+{% endxlsdocument %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Setting</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ setting.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ setting.title }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ setting.address }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ setting.email }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ setting.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Favicon</th>
+                <td>{{ setting.favicon }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ setting.logo }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ setting.language }}</td>
+            </tr>
+            <tr>
+                <th>Timezone</th>
+                <td>{{ setting.timezone }}</td>
+            </tr>
+            <tr>
+                <th>Footertext</th>
+                <td>{{ setting.footertext }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if setting.createdOn %}{{ setting.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if setting.modifiedOn %}{{ setting.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if setting.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settings_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settings_edit', { 'id': setting.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

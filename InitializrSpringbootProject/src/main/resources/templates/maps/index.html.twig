@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="table-responsive">
+      <div style="text-align: center">
+         <h1>Maps  List</h1>
+
+         <table class="table table-bordered table-hover">
+            <thead>
+               <tr>
+                  <th>Sr.</th>
+                  <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.title') }}</th>
+                  <th>Pdf</th>
+                  <th>Event Name</th>
+                  <th>Logo</th>
+                  <th>Createdon</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+            <tbody> {% set cntr=0 %}
+               {% for map in pagination %}
+                  {% set cntr=cntr+1 %}
+                  <tr>
+                     <td>{{cntr}}</td>
+                     <td>{{ map.title }}</td>
+                     <td><a href="{{asset(map.pdfimage|replace({"web/":""}))}}" width="100" height="100" target="_blank" />Click here</a></td>
+                     <td>{{map.eventId.title}}</td>
+                     <td> {% if map.logo is defined %} <img src="{{asset(map.logo|replace({"web/":""}))}}" width="100" height="100" />{% endif %}</td>
+                     <td>{% if map.createdOn %}{{ map.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                     <td>
+
+                        <ul>
+                           <li>
+                              <a href="{{ path('maps_edit', { 'id': map.id }) }}">Edit</a> |
+
+                              <a onclick="javascript:if (!confirm('Do you want to remove this record ?'))
+                                       return false;"  href="{{ path('maps_delete', { 'id': map.id }) }}">Remove</a>
+                           </li>
+                        </ul>
+                     </td>
+                  </tr>
+               {% endfor %}
+            </tbody>
+         </table></div></div>
+   <div class="navigation">
+      {{ knp_pagination_render(pagination) }}
+   </div>
+
+   <ul>
+      <li>
+         <a href="{{ path('maps_new') }}" style="text-decoration: underline;">Create a new map</a>
+      </li>
+   </ul>
+{% endblock %}

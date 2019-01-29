@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Patientadmissionlist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ patientAdmissionList.id }}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ patientAdmissionList.patientId }}</td>
+            </tr>
+            <tr>
+                <th>Doctorid</th>
+                <td>{{ patientAdmissionList.doctorId }}</td>
+            </tr>
+            <tr>
+                <th>Admissiondate</th>
+                <td>{% if patientAdmissionList.admissionDate %}{{ patientAdmissionList.admissionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dischargedate</th>
+                <td>{% if patientAdmissionList.dischargeDate %}{{ patientAdmissionList.dischargeDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Packageid</th>
+                <td>{{ patientAdmissionList.packageId }}</td>
+            </tr>
+            <tr>
+                <th>Insuranceid</th>
+                <td>{{ patientAdmissionList.insuranceId }}</td>
+            </tr>
+            <tr>
+                <th>Policyno</th>
+                <td>{{ patientAdmissionList.policyNo }}</td>
+            </tr>
+            <tr>
+                <th>Agentname</th>
+                <td>{{ patientAdmissionList.agentName }}</td>
+            </tr>
+            <tr>
+                <th>Guardianname</th>
+                <td>{{ patientAdmissionList.guardianName }}</td>
+            </tr>
+            <tr>
+                <th>Guardianrelation</th>
+                <td>{{ patientAdmissionList.guardianRelation }}</td>
+            </tr>
+            <tr>
+                <th>Guardiancontact</th>
+                <td>{{ patientAdmissionList.guardianContact }}</td>
+            </tr>
+            <tr>
+                <th>Guardianaddress</th>
+                <td>{{ patientAdmissionList.guardianAddress }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ patientAdmissionList.userId }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if patientAdmissionList.createdOn %}{{ patientAdmissionList.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if patientAdmissionList.modifiedOn %}{{ patientAdmissionList.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if patientAdmissionList.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('patientadmissionlist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('patientadmissionlist_edit', { 'id': patientAdmissionList.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>UserFavourite</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ userFavourite.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ userFavourite.userId }}</td>
+            </tr>
+            <tr>
+                <th>Exhibitorid</th>
+                <td>{{ userFavourite.exhibitorId }}</td>
+            </tr>
+            <tr>
+                <th>Favourite</th>
+                <td>{% if userFavourite.favourite %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if userFavourite.createdOn %}{{ userFavourite.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userfavourite_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('userfavourite_edit', { 'id': userFavourite.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Paymentmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Paymentdate</th>
+                <th>Accountid</th>
+                <th>Payto</th>
+                <th>Descriptions</th>
+                <th>Amount</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paymentManager in paymentManagers %}
+            <tr>
+                <td><a href="{{ path('paymentmanager_show', { 'id': paymentManager.id }) }}">{{ paymentManager.id }}</a></td>
+                <td>{% if paymentManager.paymentDate %}{{ paymentManager.paymentDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ paymentManager.accountId }}</td>
+                <td>{{ paymentManager.payto }}</td>
+                <td>{{ paymentManager.descriptions }}</td>
+                <td>{{ paymentManager.amount }}</td>
+                <td>{{ paymentManager.userId }}</td>
+                <td>{% if paymentManager.createdOn %}{{ paymentManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if paymentManager.modifiedOn %}{{ paymentManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if paymentManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('paymentmanager_show', { 'id': paymentManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('paymentmanager_edit', { 'id': paymentManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('paymentmanager_new') }}">Create a new paymentManager</a>
+        </li>
+    </ul>
+{% endblock %}

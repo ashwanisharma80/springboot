@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-right:100px;">Exhibitor Creation</h1>
+{{error}}
+    {{ form_start(form) }}
+      <div>{{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}</div>
+          <div>{{ form_label(form.boothno) }}
+        {{ form_errors(form.boothno) }}
+        {{ form_widget(form.boothno) }}</div>
+          <div>{{ form_label(form.location) }}
+        {{ form_errors(form.location) }}
+        {{ form_widget(form.location) }}</div>
+          <div>{{ form_label(form.logo) }}
+        {{ form_errors(form.logo) }}
+        {{ form_widget(form.logo) }}</div>
+          <div>{{ form_label(form.image) }}
+        {{ form_errors(form.image) }}
+        {{ form_widget(form.image) }}</div>
+          <div>{{ form_label(form.contactNumber) }}
+        {{ form_errors(form.contactNumber) }}
+        {{ form_widget(form.contactNumber) }}</div>
+          <div>{{ form_label(form.emailAdd) }}
+        {{ form_errors(form.emailAdd) }}
+        {{ form_widget(form.emailAdd) }}</div>
+          <div>{{ form_label(form.url) }}
+        {{ form_errors(form.url) }}
+        {{ form_widget(form.url) }}</div>
+        
+          <div>{{ form_label(form.categoryIds) }}
+        {{ form_errors(form.categoryIds) }}
+        {{ form_widget(form.categoryIds) }}</div>
+          <div>{{ form_label(form.productDesc) }}
+        {{ form_errors(form.productDesc) }}
+        {{ form_widget(form.productDesc) }}</div>
+          <div>{{ form_label(form.eventShowcase) }}
+        {{ form_errors(form.eventShowcase) }}
+        {{ form_widget(form.eventShowcase) }}</div>
+          <div>{{ form_label(form.eventshowcaseInfo) }}
+        {{ form_errors(form.eventshowcaseInfo) }}
+        {{ form_widget(form.eventshowcaseInfo) }}</div>
+          <div>{{ form_label(form.eventshowcaseimage) }}
+        {{ form_errors(form.eventshowcaseimage) }}
+        {{ form_widget(form.eventshowcaseimage) }}</div>
+          <div>{{ form_label(form.Facebooklink) }}
+        {{ form_errors(form.Facebooklink) }}
+        {{ form_widget(form.Facebooklink) }}</div>
+          <div>{{ form_label(form.Youtubelink) }}
+        {{ form_errors(form.Youtubelink) }}
+        {{ form_widget(form.Youtubelink) }}</div>
+          <div>{{ form_label(form.Instagram) }}
+        {{ form_errors(form.Instagram) }}
+        {{ form_widget(form.Instagram) }}</div>
+          <div>{{ form_label(form.Twiterlink) }}
+        {{ form_errors(form.Twiterlink) }}
+        {{ form_widget(form.Twiterlink) }}</div>
+          <div>{{ form_label(form.active) }}
+        {{ form_errors(form.active) }}
+        {{ form_widget(form.active) }}</div>
+         
+    {{ form_widget(form) }}
+
+
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('exhibitor_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    <script type = "text/javascript" >
+        $(function () {
+            jQuery.noConflict();
+            $('#exhibitor_eventshowcaseInfo').hide();
+            $('#exhibitor_eventshowcaseimage').hide();
+            if ($('#exhibitor_eventShowcase_0').is(':checked')) {
+                $('#exhibitor_eventshowcaseInfo').show();
+                $('#exhibitor_eventshowcaseimage').show();
+            }
+            if ($('#exhibitor_eventShowcase_1').is(':checked')) {
+                $('#exhibitor_eventshowcaseInfo').hide();
+                $('#exhibitor_eventshowcaseimage').hide();
+            }
+            $('#exhibitor_eventShowcase_0').click(function () {
+                $('#exhibitor_eventshowcaseInfo').show();
+                $('#exhibitor_eventshowcaseimage').show();
+            });
+            $('#exhibitor_eventShowcase_1').click(function () {
+                $('#exhibitor_eventshowcaseInfo').hide();
+                $('#exhibitor_eventshowcaseimage').hide();
+            });
+        });
+    </script>
+{% endblock %}

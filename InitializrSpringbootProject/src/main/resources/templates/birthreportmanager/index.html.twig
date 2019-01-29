@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Birthreportmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Birthdate</th>
+                <th>Title</th>
+                <th>Descriptions</th>
+                <th>Doctorid</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for birthReportManager in birthReportManagers %}
+            <tr>
+                <td><a href="{{ path('birthreportmanager_show', { 'id': birthReportManager.id }) }}">{{ birthReportManager.id }}</a></td>
+                <td>{{ birthReportManager.patientId }}</td>
+                <td>{% if birthReportManager.birthdate %}{{ birthReportManager.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ birthReportManager.title }}</td>
+                <td>{{ birthReportManager.descriptions }}</td>
+                <td>{{ birthReportManager.doctorId }}</td>
+                <td>{{ birthReportManager.userId }}</td>
+                <td>{% if birthReportManager.createdOn %}{{ birthReportManager.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if birthReportManager.modifiedOn %}{{ birthReportManager.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if birthReportManager.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('birthreportmanager_show', { 'id': birthReportManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('birthreportmanager_edit', { 'id': birthReportManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('birthreportmanager_new') }}">Create a new birthReportManager</a>
+        </li>
+    </ul>
+{% endblock %}

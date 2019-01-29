@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="margin-right:100px;">Surveys</h1>
+    {{error}}
+    <form name="" method="post" action="">
+         <div>{{ form_label(form.eventId) }}
+        {{ form_errors(form.eventId) }}
+        {{ form_widget(form.eventId) }}</div>
+        <div><label for="survey_name">Survey Name</label>
+            <input type="text" id="survey_name" name="survey_title" maxlength="255" required="required" /></div>
+
+        <div><label for="survey_introduction">Introduction</label>
+            <textarea id="survey_introduction" name="descriptions" required="required"></textarea></div>
+			<div><label for="user_active">Active</label>
+            <input type="checkbox" id="user_active" name="active" value="1" />
+			</div>
+        <div class="questionbox">
+            <div><label for="survey_question">Question:</label>
+                <input type="text" id="survey_question" required="required" name="question[]"/>
+				
+            </div>
+            <div><label for="survey_answer1">Answer: 1</label>
+                <input type="text" id="survey_answer1" required="required" name="answer1[]"/>
+                <label for="survey_answer2">Answer: 2</label>
+                <input type="text" id="survey_answer2" required="required" name="answer2[]"/>
+				</div>
+				<div>
+                <label for="survey_answer3">Answer: 3</label>
+                <input type="text" id="survey_answe3r" required="required" name="answer3[]"/>
+                <label for="survey_answer4">Answer: 4</label>
+                <input type="text" id="survey_answer4" required="required" name="answer4[]"/>
+            </div><hr />
+        </div>
+        <div id="schedule_add" class="schedule_add">
+           
+        </div>
+        <input type="button" value="Add another question and answer" class="addbutt" id="sub"/>
+        <input type="submit" value="Done" id="sub"/>
+    </form>
+	<br>
+    <ul>
+        <li>
+            <a href="{{ path('survey_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    <script type="text/javascript">
+
+        $(function () {
+            jQuery.noConflict();
+            //fadeout selected item and remove
+            $('.remove').live('click', function () {
+                $(this).parent().fadeOut(300, function () {
+                    $(this).empty();
+                    $(this).attr("disabled",false);
+                    i=$('.survey_ques').length-1;
+                    return false;
+                });
+            });
+           
+            
+            //add input
+            $('#sub').click(function () {
+                 i=$('.survey_ques').length+2;  
+                  var myans = '<div><label for="survey_answer1">Answer: 1</label><input type="text" required="required" id="survey_answer1" name="answer1[]"/><label for="survey_answer2">Answer: 2</label><input required="required" type="text" id="survey_answer2" name="answer2[]"/></div><div><label for="survey_answer3">Answer: 3</label><input required="required" type="text" id="survey_answe3r" name="answer3[]"/><label for="survey_answer4">Answer: 4</label><input required="required" type="text" id="survey_answer4" name="answer4[]"/></div>';
+                  var options = '<div class="questionbox"><label class="survey_ques" for="survey_question">Question:</label><input type="text" required="required"  name="question[]" value="" id="survey_question"/><input type="button" id="survey_question_button" name="delete" class="remove" value="Delete" />' + myans + '<hr /></div>';
+          
+                if (i < 11) {
+                    $(options).fadeIn("slow").appendTo('#schedule_add');
+                    $(this).attr("disabled",false);
+                     i++;
+                }else{
+                    alert("You are allowed to add maximum 10 question at a time");
+                    $(this).attr("disabled",true);
+                }
+               
+                return false;
+            });
+             
+        });
+
+
+    </script>
+{% endblock %}

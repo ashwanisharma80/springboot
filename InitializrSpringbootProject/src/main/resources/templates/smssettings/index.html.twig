@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Smssettings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Provider</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Sendername</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sMSSetting in sMSSettings %}
+            <tr>
+                <td><a href="{{ path('smssettings_show', { 'id': sMSSetting.id }) }}">{{ sMSSetting.id }}</a></td>
+                <td>{{ sMSSetting.provider }}</td>
+                <td>{{ sMSSetting.username }}</td>
+                <td>{{ sMSSetting.password }}</td>
+                <td>{{ sMSSetting.sendername }}</td>
+                <td>{% if sMSSetting.createdOn %}{{ sMSSetting.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sMSSetting.modifiedOn %}{{ sMSSetting.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sMSSetting.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('smssettings_show', { 'id': sMSSetting.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('smssettings_edit', { 'id': sMSSetting.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('smssettings_new') }}">Create a new sMSSetting</a>
+        </li>
+    </ul>
+{% endblock %}

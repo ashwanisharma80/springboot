@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Employees list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Mobile</th>
+                <th>Sex</th>
+                <th>Picture</th>
+                <th>Address</th>
+                <th>Userid</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
+                <td>{{ employee.fname }}</td>
+                <td>{{ employee.lname }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.password }}</td>
+                <td>{{ employee.mobile }}</td>
+                <td>{{ employee.sex }}</td>
+                <td>{{ employee.picture }}</td>
+                <td>{{ employee.address }}</td>
+                <td>{{ employee.userId }}</td>
+                <td>{% if employee.createdOn %}{{ employee.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if employee.modifiedOn %}{{ employee.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if employee.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('employee_new') }}">Create a new employee</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Smssetting</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sMSSetting.id }}</td>
+            </tr>
+            <tr>
+                <th>Provider</th>
+                <td>{{ sMSSetting.provider }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ sMSSetting.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ sMSSetting.password }}</td>
+            </tr>
+            <tr>
+                <th>Sendername</th>
+                <td>{{ sMSSetting.sendername }}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if sMSSetting.createdOn %}{{ sMSSetting.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedon</th>
+                <td>{% if sMSSetting.modifiedOn %}{{ sMSSetting.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if sMSSetting.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('smssettings_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('smssettings_edit', { 'id': sMSSetting.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

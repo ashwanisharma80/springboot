@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Appointments list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Departmentid</th>
+                <th>Doctorid</th>
+                <th>Appointmentdate</th>
+                <th>Serialno</th>
+                <th>Problem</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appointment in appointments %}
+            <tr>
+                <td><a href="{{ path('appointment_show', { 'id': appointment.id }) }}">{{ appointment.id }}</a></td>
+                <td>{{ appointment.patientId }}</td>
+                <td>{{ appointment.departmentId }}</td>
+                <td>{{ appointment.doctorId }}</td>
+                <td>{% if appointment.appointmentDate %}{{ appointment.appointmentDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ appointment.serialno }}</td>
+                <td>{{ appointment.problem }}</td>
+                <td>{% if appointment.createdOn %}{{ appointment.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if appointment.modifiedOn %}{{ appointment.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if appointment.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('appointment_show', { 'id': appointment.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('appointment_edit', { 'id': appointment.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('appointment_new') }}">Create a new appointment</a>
+        </li>
+    </ul>
+{% endblock %}

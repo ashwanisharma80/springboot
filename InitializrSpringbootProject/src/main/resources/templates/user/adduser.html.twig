@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Add User{% endblock %}
+{% block body %}
+    <h1 style="margin-right:100px;">Add User</h1>
+    <div id="error_mess">{{error}}</div>
+    <div id="success_mess">{{message}}</div>
+    <form name="addemail" method="post" action="" onsubmit="javascript:return checkform();">
+        <div><label for="name" class="required">First Name</label>
+            <input type="text" id="name" name="name" required="required" maxlength="255"/>
+        </div>
+        <div><label for="name" class="required">Last Name</label>
+            <input type="text" id="lname" name="lname" required="required" maxlength="255"/>
+        </div>
+        <div><label for="email" class="required">Email Address</label>
+            <input type="email" id="email" name="email" required="required" maxlength="255"/>
+        </div>
+        <div><label for="role" class="required">Roles</label>
+            <input type="radio" id="roles" name="roles[]" value="ROLE_ADMIN" />&nbsp&nbspAdmin
+            <input type="radio" id="roles" name="roles[]" value="ROLE_USER" checked="checked" />&nbsp&nbspUser
+            <input type="radio" id="roles" name="roles[]" value="ROLE_STUDENT" checked="checked" />&nbsp&nbspStudent
+        </div>
+        <input type="submit" value="Add User" />
+    </form>
+    <script type = "text/javascript" >
+        $(function () {
+            jQuery.noConflict();
+
+        });
+        function checkform() {
+            if ($('#email').val() =="") {
+                alert("Enter email address");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+{% endblock %}

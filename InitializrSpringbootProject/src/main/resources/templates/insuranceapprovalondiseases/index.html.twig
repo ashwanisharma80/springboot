@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Insuranceapprovalondiseases list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patientid</th>
+                <th>Roomno</th>
+                <th>Diseasedetails</th>
+                <th>Doctorid</th>
+                <th>Policyname</th>
+                <th>Policyno</th>
+                <th>Policyholder</th>
+                <th>Insuranceid</th>
+                <th>Approvalchargebreakup</th>
+                <th>Total</th>
+                <th>Createdon</th>
+                <th>Modifiedon</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for insuranceApprovalOnDisease in insuranceApprovalOnDiseases %}
+            <tr>
+                <td><a href="{{ path('insuranceapprovalondiseases_show', { 'id': insuranceApprovalOnDisease.id }) }}">{{ insuranceApprovalOnDisease.id }}</a></td>
+                <td>{{ insuranceApprovalOnDisease.patientId }}</td>
+                <td>{{ insuranceApprovalOnDisease.roomNo }}</td>
+                <td>{{ insuranceApprovalOnDisease.diseaseDetails }}</td>
+                <td>{{ insuranceApprovalOnDisease.doctorId }}</td>
+                <td>{{ insuranceApprovalOnDisease.policyName }}</td>
+                <td>{{ insuranceApprovalOnDisease.policyNo }}</td>
+                <td>{{ insuranceApprovalOnDisease.policyHolder }}</td>
+                <td>{{ insuranceApprovalOnDisease.insuranceId }}</td>
+                <td>{{ insuranceApprovalOnDisease.approvalChargeBreakup }}</td>
+                <td>{{ insuranceApprovalOnDisease.total }}</td>
+                <td>{% if insuranceApprovalOnDisease.createdOn %}{{ insuranceApprovalOnDisease.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if insuranceApprovalOnDisease.modifiedOn %}{{ insuranceApprovalOnDisease.modifiedOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if insuranceApprovalOnDisease.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('insuranceapprovalondiseases_show', { 'id': insuranceApprovalOnDisease.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('insuranceapprovalondiseases_edit', { 'id': insuranceApprovalOnDisease.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('insuranceapprovalondiseases_new') }}">Create a new insuranceApprovalOnDisease</a>
+        </li>
+    </ul>
+{% endblock %}

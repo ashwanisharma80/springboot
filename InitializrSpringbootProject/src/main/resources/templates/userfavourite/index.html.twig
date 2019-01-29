@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>UserFavourite List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Exhibitorid</th>
+                <th>Favourite</th>
+                <th>Createdon</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userFavourite in userFavourites %}
+            <tr>
+                <td><a href="{{ path('userfavourite_show', { 'id': userFavourite.id }) }}">{{ userFavourite.id }}</a></td>
+                <td>{{ userFavourite.userId }}</td>
+                <td>{{ userFavourite.exhibitorId }}</td>
+                <td>{% if userFavourite.favourite %}Yes{% else %}No{% endif %}</td>
+                <td>{% if userFavourite.createdOn %}{{ userFavourite.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('userfavourite_show', { 'id': userFavourite.id }) }}">Show</a> |
+                       
+                            <a href="{{ path('userfavourite_edit', { 'id': userFavourite.id }) }}">Edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userfavourite_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

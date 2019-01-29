@@ -1,0 +1,160 @@
+{% extends 'survey.html.twig' %}
+{% block body %}
+    <style>
+	
+	 body
+	   {
+	   margin:0px;
+	   padding:0px;
+	   }
+        .serveye .serve h1{
+            padding: 20px 0px;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0px;
+            text-align: center;
+        }
+        .serveye .serve h2{
+            padding: 15px 0px;
+            background-color: #FDD903;
+            color: #000000;
+            margin: 0px;
+            text-align: center;
+        }
+        .serveye .queOpt{
+            background-color: #E3E3E3;
+            color: #000000;
+            margin: 0px;
+			border-radius:5px;
+
+        }
+        .serveye .queOpt ul{
+            padding: 0px;
+        }
+        .serveye .queOpt ul li{
+            padding: 15px 0px;
+            font-size: 16px;
+            list-style:none;
+            border-bottom: 2px solid aliceblue;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        .serveye .nextBtn, .serveye .nextBtn:hover{
+            width: 100%;
+            font-size: 20px;
+            border: none; 
+			background-color: #FDD903;
+			padding:8px;
+		   -webkit-appearance:none;
+			border-radius:5px;			
+        }
+
+
+        .serveye .question{
+            font-size: 18px;
+            font-weight: 700;
+            margin:10px;
+        }
+
+        .serveye .intro {
+            font-size: 18px;
+        }
+        .serveye .stratServ, .serveye .stratServ:hover{
+            width: 100%;
+            background-color: #FDD903;
+            font-size: 20px;
+            border: none;
+            color: #000000;
+            text-transform: uppercase;
+        }
+		 #surveyform
+			{
+			margin-left:20px;
+			margin-right:20px;
+			border-radius:5px;
+			}
+			
+	input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #FDD903;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid  #FDD903;
+}
+        
+
+      
+    </style>
+    <div class="serveye">
+
+        <div class="serve">      
+            <h2>Question {{offset}} of {{questcount}}</h2>
+        </div>
+        <form name="surveyform" method="post" id="surveyform" action="{{path('mobile_survey',{'survey_id':survey_id,'token':token,'offset':offset})}}">
+            <input type="hidden" name="questionId" value="{{quest[0].id}}" />
+            <input type="hidden" name="surveyId" value="{{survey_id}}" />
+            <input type="hidden" name="offset" value="{{offset}}+1" />
+            <div class="question">
+                <p>{{quest[0].question}}</p>
+            </div>
+            <div class="queOpt">
+                <div class="radio radio-info radio-inline">
+                    <ul>
+                        <li><input type="radio" id="answer1" value="{{ans[0].id}}" name="answer" class="anss" />
+                            <label for="answer1">{{ans[0].answer}}</label></li>
+                        <li><input type="radio" id="answer2" value="{{ans[1].id}}" name="answer" class="anss" />
+                            <label for="answer2">{{ans[1].answer}}</label></li>
+                        <li><input type="radio" id="answer3" value="{{ans[2].id}}" name="answer" class="anss" />
+                            <label for="answer3">{{ans[2].answer}} </label></li>
+                        <li><input type="radio" id="answer4" value="{{ans[3].id}}" name="answer" class="anss" />
+                            <label for="answer4">{{ans[3].answer}}</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="next">
+                <input id="start" type="button" class="btn btn-primary nextBtn" value="Next" />
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery.noConflict();
+            jQuery('#start').click(function () {
+                var ans = jQuery('.anss');
+                var flg = false;
+                for (var i = 0; i < ans.length; i++) {
+                    if (ans[i].checked) {
+                        flg = true;
+                    }
+                }
+                if (!flg) {
+                    alert("Please select an answer");
+                } else {
+
+                    jQuery('#surveyform').submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>exhibitor</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ exhibitor.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ exhibitor.name }}</td>
+            </tr>
+            <tr>
+                <th>Boothno</th>
+                <td>{{ exhibitor.boothno }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ exhibitor.location }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ exhibitor.logo }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ exhibitor.image }}</td>
+            </tr>
+            <tr>
+                <th>Contactnumber</th>
+                <td>{{ exhibitor.contactNumber }}</td>
+            </tr>
+            <tr>
+                <th>Emailadd</th>
+                <td>{{ exhibitor.emailAdd }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ exhibitor.url }}</td>
+            </tr>
+            <tr>
+                <th>Categoryids</th>
+                <td>{{ exhibitor.categoryIds }}</td>
+            </tr>
+            <tr>
+                <th>Productdesc</th>
+                <td>{{ exhibitor.productDesc }}</td>
+            </tr>
+            <tr>
+                <th>Productshowcase</th>
+                <td>{% if exhibitor.productShowcase %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Socialmedialinks</th>
+                <td>{{ exhibitor.socialMediaLinks }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if exhibitor.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdon</th>
+                <td>{% if exhibitor.createdOn %}{{ exhibitor.createdOn|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exhibitor_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('exhibitor_edit', { 'id': exhibitor.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
