@@ -53,7 +53,7 @@ public class UserJpaController {
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         user.setCreatedOn(ft.format(date));
-        if (password != "") {
+        if (!"".equals(password)) {
             user.setPassword(getMd5(password));
         }
         userRepository.save(user);
