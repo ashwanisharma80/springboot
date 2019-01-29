@@ -47,7 +47,7 @@ public class QuestionsJpaController {
         userRepository.save(n);*/
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(ft.format(date));
+        //System.out.println(ft.format(date));
         questions.setCreatedOn(ft.format(date));
         QuestionsRepository.save(questions);
         model.addAttribute("questions", questions);

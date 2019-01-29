@@ -102,7 +102,19 @@ public class UserJpaController {
         //System.out.println(userRepository.findAll());
         return modelAndView;
     }
+    
+    @GetMapping("/list")
+    public ModelAndView getList() {
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
+        String dates = ft.format(date);
 
+        System.out.println(dates + "::date");
+        ModelAndView modelAndView = new ModelAndView("user/listUser");
+        modelAndView.addObject("userlist", userRepository.findAll());
+        //System.out.println(userRepository.findAll());
+        return modelAndView;
+    }
     @RequestMapping(value = "/{id}/edit", method = GET)
     public String editAction(Model model, @PathVariable("id") int id) {
         model.addAttribute("title", "Edit User");
