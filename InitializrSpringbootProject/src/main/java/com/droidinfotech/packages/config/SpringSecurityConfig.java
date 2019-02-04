@@ -5,94 +5,58 @@
  */
 package com.droidinfotech.packages.config;
 
+import com.droidinfotech.packages.model.UserRepository;
 import javax.activation.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.web.access.AccessDeniedHandler;
 
-@Configuration
-// http://docs.spring.io/spring-boot/docs/current/reference/html/howto-security.html
-// Switch off the Spring Boot security configuration
-//https://www.baeldung.com/spring-security-login
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
+@Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
-    private DataSource dataSource;
-    //@Autowired
-    //private AccessDeniedHandler accessDeniedHandler;
-    // roles admin allow to access /admin/**
-    // roles user allow to access /user/**
-    // custom 403 access denied handler
+    private CustomUserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.userDetailsService(userDetailsService)
+        .passwordEncoder(getPasswordEncoder());
+    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        	 http.authorizeRequests()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.and()
-		  .formLogin().loginPage("/login").loginProcessingUrl("/Checklogin").failureUrl("/login?error").defaultSuccessUrl("/", true)
-		  .usernameParameter("username").passwordParameter("password")
-		.and()
-		  .logout().logoutSuccessUrl("/login?logout")
-		.and()
-		  .exceptionHandling().accessDeniedPage("/403")
-		.and()
-		  .csrf();
-       
-        /*http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/home", "/about").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/Users/**").hasAnyRole("USER")
-                .anyRequest().authenticated()
+
+        http.csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("**/secured/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();*/
-        //.and()
-        //  .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .formLogin().permitAll();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-       /* auth.jdbcAuthentication().dataSource((javax.sql.DataSource) getDataSource())
-		.usersByUsernameQuery(
-			"select username,password, enabled from user where username=?")
-		.authoritiesByUsernameQuery(
-			"select username, name from user_roles where username=?");*/
-        auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN");
-    }
+    private PasswordEncoder getPasswordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence charSequence) {
+                return charSequence.toString();
+            }
 
-    /*
-    //Spring Boot configured this already.
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }*/
-
-    /**
-     * @return the dataSource
-     */
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    /**
-     * @param dataSource the dataSource to set
-     */
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+            @Override
+            public boolean matches(CharSequence charSequence, String s) {
+                return true;
+            }
+        };
     }
 }
