@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ *
+ * @author ACER
+ */
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
 
