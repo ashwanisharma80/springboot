@@ -13,12 +13,15 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.data.jpa.repository.Query;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +32,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller    // This means that this class is a Controller
-@RequestMapping(path = "/") // This means URL's start with /demo (after Application path)
+@RequestMapping(path = "/Users") // This means URL's start with /demo (after Application path)
 public class UserJpaController {
 
     @Autowired // This means to get the bean called userRepository
@@ -99,27 +102,15 @@ public class UserJpaController {
 
     @GetMapping("/listAll")
     public ModelAndView getAll() {
-        Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
-        String dates = ft.format(date);
-
-        System.out.println(dates + "::date");
         ModelAndView modelAndView = new ModelAndView("user/listUser");
         modelAndView.addObject("userlist", userRepository.findAll());
-        //System.out.println(userRepository.findAll());
         return modelAndView;
     }
 
     @GetMapping("/list")
     public ModelAndView getList() {
-        Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("y-M-d");
-        String dates = ft.format(date);
-
-        System.out.println(dates + "::date");
         ModelAndView modelAndView = new ModelAndView("user/listUser");
         modelAndView.addObject("userlist", userRepository.findAll());
-        //System.out.println(userRepository.findAll());
         return modelAndView;
     }
 
@@ -139,36 +130,4 @@ public class UserJpaController {
 
     }
 
-    @RequestMapping("/login")
-
-    public String loginAction(HttpServletRequest request) {
-        
-        return "registration/login";
-    }
-
-    @PostMapping("/Checklogin")
-    public String Checklogin(HttpServletRequest request, HttpSession session, Authentication authentication) {
-        
-    //    logger.warn("this is a warn message");
-      //  logger.error("this is a error message");
-        System.out.println(":::testing 000afdf:::");
-        String password = request.getParameter("password");
-        String username = request.getParameter("username");
-        System.out.println(password + ":Check:" + username);
-        if (username != null && password != null) {
-            System.out.println("testing");
-            System.out.println(password + ":::" + username);
-            List user = userRepository.checkLogin(username, getMd5(password));
-            System.out.println(user + ":::testing 000afdf");
-            if (user.size() > 0) {
-                session.setAttribute("user", user);
-                System.out.println(user);
-                return "redirect:/Users/list";
-
-            }
-            //System.out.println(userRepository.checkLogin(email, getMd5(password)));
-        }
-
-        return "registration/login";
-    }
 }

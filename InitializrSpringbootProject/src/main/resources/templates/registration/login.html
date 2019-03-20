@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
     </head>
     <body>
+        <security:authorize access="isAuthenticated()">
+    authenticated as <security:authentication property="principal.username" /> 
+</security:authorize>
         <div th:fragment="content">
             <form name="f" th:action="@{/Checklogin}" method="post">               
                 <fieldset>

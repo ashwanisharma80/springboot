@@ -1,17 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.droidinfotech.packages.config;
-
-import javax.activation.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
@@ -21,20 +19,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private DataSource dataSource;
     //@Autowired
-    //private AccessDeniedHandler accessDeniedHandler;
-    // roles admin allow to access /admin/**
-    // roles user allow to access /user/**
-    // custom 403 access denied handler
+    //https://docs.spring.io/spring-security/site/docs/current/reference/html/jc.html
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         	 http.authorizeRequests()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/", "/login", "/Checklogin").permitAll()
+                //.antMatchers("/Users/**").hasAnyRole("USER")         
+                .anyRequest().authenticated()
 		.and()
-		  .formLogin().loginPage("/login").loginProcessingUrl("/Checklogin").failureUrl("/login?error").defaultSuccessUrl("/", true)
+		  .formLogin().loginPage("/login").failureUrl("/login?error")
 		  .usernameParameter("username").passwordParameter("password")
 		.and()
 		  .logout().logoutSuccessUrl("/login?logout")
@@ -59,7 +53,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         //.and()
         //  .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user =
+             User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build();
 
+        return new InMemoryUserDetailsManager(user);
+    }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
        /* auth.jdbcAuthentication().dataSource((javax.sql.DataSource) getDataSource())
@@ -71,28 +76,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user").password("password").roles("USER")
                 .and()
                 .withUser("admin").password("password").roles("ADMIN");
-    }
-
-    /*
-    //Spring Boot configured this already.
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }*/
-
-    /**
-     * @return the dataSource
-     */
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    /**
-     * @param dataSource the dataSource to set
-     */
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
     }
 }
