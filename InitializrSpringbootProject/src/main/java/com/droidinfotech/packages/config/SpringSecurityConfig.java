@@ -12,15 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //import org.springframework.security.web.access.AccessDeniedHandler;
 
-@Configuration
-// http://docs.spring.io/spring-boot/docs/current/reference/html/howto-security.html
-// Switch off the Spring Boot security configuration
-//https://www.baeldung.com/spring-security-login
 @EnableWebSecurity
-
+@Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    //@Autowired
-    //https://docs.spring.io/spring-security/site/docs/current/reference/html/jc.html
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         	 http.authorizeRequests()
