@@ -12,7 +12,7 @@
     authenticated as <security:authentication property="principal.username" /> 
 </security:authorize>
         <div th:fragment="content">
-            <form name="f" th:action="@{/Checklogin}" method="post">               
+            <form name="f" th:action="@{/login}" method="post">               
                 <fieldset>
                     <legend>Please Login</legend>
                     <div th:if="${param.error}" class="alert alert-error">    
